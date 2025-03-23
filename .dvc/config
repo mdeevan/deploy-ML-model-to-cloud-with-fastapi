@@ -1,0 +1,4 @@
+[core]
+    remote = opsremote
+['remote "opsremote"']
+    url = s3://mlops-udacity-3/dvc/
