@@ -9,3 +9,4 @@ uvicorn
 gunicorn
 joblib
 dvc
+dvc[s3]
