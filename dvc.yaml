@@ -1,0 +1,12 @@
+stages:
+  train_model:
+    cmd:
+    - python train_model.py
+    deps:
+    - train_model.py
+    params:
+    - n_estimators
+    - model.metric_file
+    - data.clean_file
+    metrics:
+    - metrics.json

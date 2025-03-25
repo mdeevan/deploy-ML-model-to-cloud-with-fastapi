@@ -10,7 +10,7 @@ from ml.model import train_model, compute_model_metrics, inference
 import joblib
 
 #  load in the data.
-data = pd.read_csv("../data/census_clean.csv")
+data = pd.read_csv("data/census_clean.csv")
 
 
 

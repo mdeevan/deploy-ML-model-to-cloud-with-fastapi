@@ -1,0 +1,20 @@
+schema: '2.0'
+stages:
+  train_model:
+    cmd:
+    - python train_model.py
+    deps:
+    - path: train_model.py
+      hash: md5
+      md5: d556a1a000b52c7e832a3f1255615e83
+      size: 2118
+    params:
+      params.yaml:
+        data.clean_file: data/census_clean.csv
+        model.metric_file: metrics.json
+        n_estimators: 100
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 769bcf4330bbe47f732b138136fe0e11
+      size: 83
