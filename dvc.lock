@@ -12,9 +12,9 @@ stages:
       params.yaml:
         data.clean_file: data/census_clean.csv
         model.metric_file: metrics.json
-        n_estimators: 100
+        n_estimators: 150
     outs:
     - path: metrics.json
       hash: md5
-      md5: 769bcf4330bbe47f732b138136fe0e11
-      size: 83
+      md5: 76886e111b9d7c1493afc1b72c9a47ce
+      size: 92
