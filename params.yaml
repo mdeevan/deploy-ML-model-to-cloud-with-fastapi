@@ -1,8 +1,8 @@
-n_estimators: 200
+n_estimators: 150
 data:
   path: data/
   raw_file: census.csv
-  clean_file: data/census_clean.csv
+  clean_file: census_clean.csv
   test_size: 0.20
 model:
   model_path: model/
@@ -10,3 +10,12 @@ model:
   encoder_name: encoder.pkl
   lb_name: lb.pkl
   metric_file: metrics.json
+cat_features:
+- workclass
+- education
+- marital-status
+- occupation
+- relationship
+- race
+- sex
+- native-country

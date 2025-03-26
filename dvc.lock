@@ -6,15 +6,15 @@ stages:
     deps:
     - path: train_model.py
       hash: md5
-      md5: d556a1a000b52c7e832a3f1255615e83
-      size: 2118
+      md5: 139290b5c62d75d792fa93b04ca16fbd
+      size: 2178
     params:
       params.yaml:
         data.clean_file: data/census_clean.csv
         model.metric_file: metrics.json
-        n_estimators: 200
+        n_estimators: 150
     outs:
     - path: metrics.json
       hash: md5
-      md5: 22c4d46b6eccc9a45bfd8404c210f8b8
-      size: 90
+      md5: e7c51126793ab076ebc265fecf2727bf
+      size: 91
