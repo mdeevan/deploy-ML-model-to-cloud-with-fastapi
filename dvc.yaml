@@ -10,3 +10,13 @@ stages:
     - data.clean_file
     metrics:
     - metrics.json
+  slices_inference:
+    cmd:
+    - python compute_slices.py
+    deps:
+    - compute_slices.py
+    params:
+    - data.sliced_name
+    - data.clean_file
+    outs:
+    - slicer.csv

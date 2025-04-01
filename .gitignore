@@ -176,3 +176,5 @@ cython_debug/
 /data_raw.csv
 temp.ipynb
 /metrics.json
+/test.csv
+/slicer.csv

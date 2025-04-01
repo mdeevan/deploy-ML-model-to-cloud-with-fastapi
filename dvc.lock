@@ -6,15 +6,32 @@ stages:
     deps:
     - path: train_model.py
       hash: md5
-      md5: 139290b5c62d75d792fa93b04ca16fbd
-      size: 2178
+      md5: 7968fefdcc108df4c42cfff5d5c7de48
+      size: 2878
     params:
       params.yaml:
-        data.clean_file: data/census_clean.csv
+        data.clean_file: census_clean.csv
         model.metric_file: metrics.json
         n_estimators: 150
     outs:
     - path: metrics.json
       hash: md5
-      md5: e7c51126793ab076ebc265fecf2727bf
-      size: 91
+      md5: 38f113b6cf2f66859a7764d376f04ccb
+      size: 92
+  slices_inference:
+    cmd:
+    - python compute_slices.py
+    deps:
+    - path: compute_slices.py
+      hash: md5
+      md5: 9a3cd0bfac07f77ca4910e1ead80700e
+      size: 2506
+    params:
+      params.yaml:
+        data.clean_file: census_clean.csv
+        data.sliced_name: slicer.csv
+    outs:
+    - path: slicer.csv
+      hash: md5
+      md5: 676b2d8274aae60e466c67b6e017ec8c
+      size: 5740
