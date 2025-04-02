@@ -16,8 +16,8 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: 38f113b6cf2f66859a7764d376f04ccb
-      size: 92
+      md5: 7d0fe52bafcda76ff14b242f4fb14bde
+      size: 91
   slices_inference:
     cmd:
     - python compute_slices.py
@@ -29,9 +29,8 @@ stages:
     params:
       params.yaml:
         data.clean_file: census_clean.csv
-        data.sliced_name: slicer.csv
     outs:
-    - path: slicer.csv
+    - path: slice_output.txt
       hash: md5
-      md5: 676b2d8274aae60e466c67b6e017ec8c
-      size: 5740
+      md5: 4ade583c2f91d2e899bafffa1a4fb97e
+      size: 5777

@@ -16,7 +16,6 @@ stages:
     deps:
     - compute_slices.py
     params:
-    - data.sliced_name
     - data.clean_file
     outs:
-    - slicer.csv
+    - slice_output.txt

@@ -4,7 +4,7 @@ data:
   raw_file: census.csv
   clean_file: census_clean.csv
   test_size: 0.20
-  sliced_name: slicer.csv
+  sliced_name: slice_output.txt
 model:
   model_path: model/
   model_name: model.pkl
