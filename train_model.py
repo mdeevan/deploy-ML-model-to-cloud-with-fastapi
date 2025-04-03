@@ -80,10 +80,10 @@ test.to_csv(os.path.join(data_path, "test.csv"), index=False)
 # X_test.to_csv(os.path.join(data_path, "X_test"))
 # y_test.to_csv(os.path.join(data_path, "y_test"))
 
-fname = ['X_train.csv', 'y_train.csv', 'X_test.csv', 'y_test.csv' ]
-for idx, file in enumerate([X_train, y_train, X_test, y_test ]):
-    outfile = os.path.join(data_path, fname[idx])
-    np.savetxt(outfile, file, delimiter=",")
+# fname = ['X_train.csv', 'y_train.csv', 'X_test.csv', 'y_test.csv' ]
+# for idx, file in enumerate([X_train, y_train, X_test, y_test ]):
+#     outfile = os.path.join(data_path, fname[idx])
+#     np.savetxt(outfile, file, delimiter=",")
 
 preds = inference(model, X_test)
 precision, recall, fbeta = compute_model_metrics(y_test, preds)

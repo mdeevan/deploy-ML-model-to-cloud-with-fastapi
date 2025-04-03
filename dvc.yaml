@@ -12,6 +12,7 @@ stages:
     - metrics.json
     outs:
     - model/model.pkl
+    -
   slices_inference:
     cmd:
     - python compute_slices.py
