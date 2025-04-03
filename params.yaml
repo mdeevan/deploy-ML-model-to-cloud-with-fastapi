@@ -1,4 +1,4 @@
-n_estimators: 170
+n_estimators: 175
 data:
   path: data/
   raw_file: census.csv
