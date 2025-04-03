@@ -12,13 +12,14 @@ stages:
     - metrics.json
     outs:
     - model/model.pkl
-    -
+    - data/test.csv
   slices_inference:
     cmd:
     - python compute_slices.py
     deps:
     - compute_slices.py
     - model/model.pkl
+    - data/test.csv
     params:
     - data.clean_file
     outs:
