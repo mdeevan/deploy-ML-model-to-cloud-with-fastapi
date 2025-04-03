@@ -91,7 +91,7 @@ precision, recall, fbeta = compute_model_metrics(y_test, preds)
 outfile = os.path.join(data_path, metric_file)
 print(f"output metric: {outfile}")
 
-with open(metric_file, "w") as f:
+with open(outfile, "w") as f:
     json.dump({'precision': precision, 
                'recall' : recall, 
                'fbeta': fbeta}, f)

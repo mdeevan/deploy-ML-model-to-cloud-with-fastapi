@@ -9,7 +9,7 @@ stages:
     - model.metric_file
     - data.clean_file
     metrics:
-    - metrics.json
+    - data/metrics.json
     outs:
     - model/model.pkl
     - data/test.csv
