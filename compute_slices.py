@@ -71,7 +71,7 @@ def compute_slices():
             slices_inference_list.append([cat, feature, precision, recall, fbeta])
     
     outfile = os.path.join(data_path, sliced_name)
-    with open(sliced_name, "wt") as fp:
+    with open(outfile, "wt") as fp:
         writer = csv.writer(fp, delimiter=",")
         writer.writerow(["category", "features", "precision", "recall", "fbeta"])  # write header
         writer.writerows(slices_inference_list)

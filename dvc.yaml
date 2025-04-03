@@ -10,12 +10,15 @@ stages:
     - data.clean_file
     metrics:
     - metrics.json
+    outs:
+    - model/model.pkl
   slices_inference:
     cmd:
     - python compute_slices.py
     deps:
     - compute_slices.py
+    - model/model.pkl
     params:
     - data.clean_file
     outs:
-    - slice_output.txt
+    - data/slice_output.txt

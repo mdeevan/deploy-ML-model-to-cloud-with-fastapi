@@ -172,10 +172,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-/data
 /data_raw.csv
 temp.ipynb
 /metrics.json
-/test.csv
-/slicer.csv
-/slice_output.txt
