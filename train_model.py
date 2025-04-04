@@ -1,44 +1,51 @@
 # Script to train machine learning model.
 
-import os
+# import os
 
-from sklearn.model_selection import train_test_split
+# from sklearn.model_selection import train_test_split
 
-import pandas as pd
-import numpy as np
-from ml.data import process_data
-from ml.model import train_model, compute_model_metrics, inference
-import joblib
+# import pandas as pd
+# import numpy as np
+# from ml.data import process_data
+# from ml.model import train_model, compute_model_metrics, inference
+# import joblib
 
-import dvc.api
-import os
-import json
+# import dvc.api
+# import os
+# import json
+
+import census_class as census_class
+
+
+if __name__ == "__main__":
+    census = census_class.Census()
+    census.execute()
 
 #  load in the data.
 
-params = dvc.api.params_show()
+# params = dvc.api.params_show()
 
-n_estimators = params['n_estimators']
+# n_estimators = params['n_estimators']
 
-data_path = params['data']['path']
-clean_data_file = params['data']['clean_file']
+# data_path = params['data']['path']
+# clean_data_file = params['data']['clean_file']
 
-test_size = params['data']['test_size']
+# test_size = params['data']['test_size']
 
-model_path = params['model']['model_path']
-model_name = params['model']['model_name']
-encoder_name = params['model']['encoder_name']
-lb_name = params['model']['lb_name']
-metric_file = params['model']['metric_file']
+# model_path = params['model']['model_path']
+# model_name = params['model']['model_name']
+# encoder_name = params['model']['encoder_name']
+# lb_name = params['model']['lb_name']
+# metric_file = params['model']['metric_file']
 
-cat_features = params['cat_features']
+# cat_features = params['cat_features']
 
 # data = pd.read_csv("data/census_clean.csv")
-data = pd.read_csv(os.path.join(data_path, clean_data_file))
+# data = pd.read_csv(os.path.join(data_path, clean_data_file))
 # data = pd.read_csv(clean_data_file)
 
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
-train, test = train_test_split(data, test_size=test_size)
+# train, test = train_test_split(data, test_size=test_size)
 
 # print(f"cat features : {cat_features}")
 # print(f"data path {data_path}, clean file {clean_data_file}")
@@ -53,26 +60,26 @@ train, test = train_test_split(data, test_size=test_size)
 #     "native-country",
 # ]
 # print(f"train :{train}")
-X_train, y_train, encoder, lb = process_data(
-    train, categorical_features=cat_features, label="salary", training=True
-)
+# X_train, y_train, encoder, lb = process_data(
+#     train, categorical_features=cat_features, label="salary", training=True
+# )
 
 # print(f"X_Train :{X_train}")
 # Proces the test data with the process_data function.
-X_test, y_test, encoder, lb = process_data(
-    test,  categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
-)
+# X_test, y_test, encoder, lb = process_data(
+#     test,  categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
+# )
 
 
 # Train and save a model.
-model = train_model(X_train, y_train, n_estimators)
-print(f"path {os.path.join(model_path, model_name)}")
-joblib.dump(model,   os.path.join(model_path, model_name))
-joblib.dump(encoder, os.path.join(model_path, encoder_name))
-joblib.dump(lb,      os.path.join(model_path, lb_name))
+# model = train_model(X_train, y_train, n_estimators)
+# print(f"path {os.path.join(model_path, model_name)}")
+# joblib.dump(model,   os.path.join(model_path, model_name))
+# joblib.dump(encoder, os.path.join(model_path, encoder_name))
+# joblib.dump(lb,      os.path.join(model_path, lb_name))
 
-train.to_csv(os.path.join(data_path, "train.csv"), index=False)
-test.to_csv(os.path.join(data_path, "test.csv"), index=False)
+# train.to_csv(os.path.join(data_path, "train.csv"), index=False)
+# test.to_csv(os.path.join(data_path, "test.csv"), index=False)
 
 
 
@@ -85,13 +92,13 @@ test.to_csv(os.path.join(data_path, "test.csv"), index=False)
 #     outfile = os.path.join(data_path, fname[idx])
 #     np.savetxt(outfile, file, delimiter=",")
 
-preds = inference(model, X_test)
-precision, recall, fbeta = compute_model_metrics(y_test, preds)
+# preds = inference(model, X_test)
+# precision, recall, fbeta = compute_model_metrics(y_test, preds)
 
-outfile = os.path.join(data_path, metric_file)
-print(f"output metric: {outfile}")
+# outfile = os.path.join(data_path, metric_file)
+# print(f"output metric: {outfile}")
 
-with open(outfile, "w") as f:
-    json.dump({'precision': precision, 
-               'recall' : recall, 
-               'fbeta': fbeta}, f)
+# with open(outfile, "w") as f:
+#     json.dump({'precision': precision, 
+#                'recall' : recall, 
+#                'fbeta': fbeta}, f)
