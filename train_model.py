@@ -19,7 +19,7 @@ import census_class as census_class
 
 if __name__ == "__main__":
     census = census_class.Census()
-    census.execute()
+    census.execute_training()
 
 #  load in the data.
 

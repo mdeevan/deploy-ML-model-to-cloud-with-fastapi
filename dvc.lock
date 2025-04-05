@@ -6,8 +6,8 @@ stages:
     deps:
     - path: train_model.py
       hash: md5
-      md5: 77bf10870761870babfae86e302faa0f
-      size: 3072
+      md5: 891b8f82df9ebfbbc038ed9f7bf23be3
+      size: 3092
     params:
       params.yaml:
         data.clean_file: census_clean.csv
