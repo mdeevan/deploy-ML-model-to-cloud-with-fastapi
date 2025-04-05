@@ -14,7 +14,6 @@ import logging
 import os
 import dvc.api
 
-from starter.ml.functions import data_encoder
 import census_class as cls
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
@@ -92,18 +91,19 @@ async def predict(input: CensusData):
     """
 
     # Read data sent as POST
-    input_data = input.model_dump(by_alias=True)
+    print(f"input  = {input}, input type = {type(input)}")
+    input_data = input.dict(by_alias=True)
+    print(f"input data = {input_data}")
+
     input_df = pd.DataFrame(input_data, index=[0])
     logger.info(f"Input data: {input_df}")
 
-    # Process the data
-    X_train, _, _, _ =data_encoder(
-                input_df, categorical_features=cat_features, \
-                label='salary', training=False, encoder=encoder, lb=binarizer)
 
-    preds = int(model.predict(X_train)[0])
-    logger.info(f"Preds: {preds}")
-    return {"result": preds}
+    census_obj = cls.Census()
+    pred = census_obj.execute_inference(model=model, encoder=encoder, lb=lb, df=input_df)
+    # Process the data
+    logger.info(f"Preds: {pred}")
+    return {"result": pred}
 
 
 #if __name__ == "__main__":

@@ -6,26 +6,26 @@ stages:
     deps:
     - path: train_model.py
       hash: md5
-      md5: 891b8f82df9ebfbbc038ed9f7bf23be3
-      size: 3092
+      md5: a307e141bb4e23b9a4f2fe751562762f
+      size: 3101
     params:
       params.yaml:
         data.clean_file: census_clean.csv
         model.metric_file: metrics.json
-        n_estimators: 112
+        n_estimators: 113
     outs:
     - path: data/metrics.json
       hash: md5
-      md5: c9953d8e56b579d64e710b31fe5b304a
-      size: 77
+      md5: 0dee289ff72964439f35c40925c8454f
+      size: 78
     - path: data/test.csv
       hash: md5
-      md5: 5d3340b1bbab35e2026d504b2ef84166
-      size: 659612
+      md5: 7957c0c6e9dbf578c009cbbf5f9ccb1b
+      size: 659910
     - path: model/model.pkl
       hash: md5
-      md5: cb7b05bf3f1aaf04941233e34c1109eb
-      size: 76995353
+      md5: de7fdfa256d2f70ff64cb79ce9e90e09
+      size: 77474057
   slices_inference:
     cmd:
     - python compute_slices.py
@@ -36,17 +36,17 @@ stages:
       size: 2502
     - path: data/test.csv
       hash: md5
-      md5: 5d3340b1bbab35e2026d504b2ef84166
-      size: 659612
+      md5: 7957c0c6e9dbf578c009cbbf5f9ccb1b
+      size: 659910
     - path: model/model.pkl
       hash: md5
-      md5: cb7b05bf3f1aaf04941233e34c1109eb
-      size: 76995353
+      md5: de7fdfa256d2f70ff64cb79ce9e90e09
+      size: 77474057
     params:
       params.yaml:
         data.clean_file: census_clean.csv
     outs:
     - path: data/slice_output.txt
       hash: md5
-      md5: a1a16f95e979051dcd9c50dbcaac2434
-      size: 5715
+      md5: 0a58e8b276e9e6a65c13a08951f009b5
+      size: 5774

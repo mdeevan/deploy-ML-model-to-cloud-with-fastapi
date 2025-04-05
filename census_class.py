@@ -101,6 +101,7 @@ class Census():
         """
 
         input_features = self.train if features is None else features
+
         features, target, encoder, lb = process_data(input_features,
                                                      categorical_features=self.cat_features,
                                                      label="salary", 
@@ -131,8 +132,14 @@ class Census():
         self.train.to_csv(os.path.join(data_path, "train.csv"), index=False)
         self.test.to_csv(os.path.join(data_path, "test.csv"), index=False)
 
-        self.X_test.to_csv(os.path.join(data_path, "X_test.csv"), index=False)
-        self.y_test.to_csv(os.path.join(data_path, "y_test.csv"), index=False)
+        # self.X_test.to_csv(os.path.join(data_path, "X_test.csv"), index=False)
+        # self.y_test.to_csv(os.path.join(data_path, "y_test.csv"), index=False)
+
+        fname = ['X_train.csv', 'y_train.csv', 'X_test.csv', 'y_test.csv' ]
+        for idx, file in enumerate([self.X_train, self.y_train, self.X_test, self.y_test ]):
+            outfile = os.path.join(data_path, fname[idx])
+            np.savetxt(outfile, file, delimiter=",")
+
 
     def make_inference(self, model, features, path=None):
         """
@@ -177,23 +184,24 @@ class Census():
         """
         self._read_data()
         self._split_data()
-        self.X_train, self.y_train, self.encoder, self.lb = self._process_data(True)
-        self.X_test , self.y_test,  _, _ = self._process_data(False, self.test, self.encoder, self.lb)
+        self.X_train, self.y_train, self.encoder, self.lb = self._process_data(training_flag=True)
+
+        self.X_test , self.y_test,  _, _ = self._process_data(training_flag=False, features=self.test, encoder=self.encoder, lb=self.lb)
         self._train_model(self.X_train, self.y_train, self.n_estimators)
         self._save_model()
         self._save_data_split()
         self.preds = self.make_inference(self.model, self.X_test)
         self._compute_metrics(self.y_test, self.preds)
 
-    def execute_inference(self):
+    def execute_inference(self, model, encoder, lb, df:pd.DataFrame=None):
         """
         in case of inference call from the front end for a single row of data
         there is no split, so test will be empty and train will have one row
         here we call the inference with train, having a single row 
         """
-        self._read_data()
-        self._split_data(inference=True)
-        features , _,  _, _ = self._process_data(False, self.train, self.encoder, self.lb)
+        # self._read_data()
+        # self._split_data(inference=True)
+        features , _,  _, _ = self._process_data(features=df, training_flag=False, encoder=encoder, lb=lb)
 
         pred = self.make_inference(self.model, features)
 

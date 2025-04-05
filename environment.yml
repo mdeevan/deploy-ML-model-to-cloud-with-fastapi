@@ -12,9 +12,9 @@ dependencies:
   - fastapi==0.63.0
   - uvicorn
   - gunicorn
-  - pip=23.3
   - joblib
   - libsqlite==3.48.0
-  - pip
-    - dvc
+  - pip=23.3
+  - pip:
     - dvc[s3]
+    - pydantic

@@ -26,7 +26,8 @@ class TestCensus():
     y_train = None
     y_test = None
     n_estimators = None
-    
+    train = None
+    test = None
 
     logging.basicConfig(
         filename='./logs/census.log',
@@ -96,6 +97,9 @@ class TestCensus():
         try:
             TestCensus.census_obj._split_data()
 
+            TestCensus.train = TestCensus.census_obj.train
+            TestCensus.test = TestCensus.census_obj.test
+
             logging.info("perform split data: SUCCESS")
 
         except (AssertionError, KeyError, ValueError) as err:
@@ -126,7 +130,8 @@ class TestCensus():
 
         try:
             # self.X_train, self.y_train, self.encoder, self.lb = TestCensus.census_obj._process_data(True)
-            TestCensus.X_train, TestCensus.y_train, TestCensus.encoder, TestCensus.lb = TestCensus.census_obj._process_data(True)
+            TestCensus.X_train, TestCensus.y_train, TestCensus.encoder, TestCensus.lb = TestCensus.census_obj._process_data(training_flag=True)
+
             logging.info(f"test_process_data : X_train shape {TestCensus.X_train.shape}, y_train shape {TestCensus.y_train.shape}")
             logging.info("process data - Train: SUCCESS")
 
@@ -135,7 +140,7 @@ class TestCensus():
             raise err
 
         try:
-            X_test, y_test, _, _ = TestCensus.census_obj._process_data(False, TestCensus.encoder, TestCensus.lb)
+            X_test, y_test, _, _ = TestCensus.census_obj._process_data(training_flag=False, features=TestCensus.test , encoder=TestCensus.encoder, lb=TestCensus.lb)
             logging.info("process data - Test: SUCCESS")
 
         except AssertionError as err:
