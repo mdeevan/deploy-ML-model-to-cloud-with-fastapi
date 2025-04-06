@@ -46,7 +46,7 @@ jobs:
       uses: iterative/setup-dvc@v2
   
     - name: configure storage
-      run: dvc remote add -d s3-bucket s3://uda3/storage
+      run: dvc remote add -d s3-bucket s3://mlops-udacity-3/dvc/
       
     - name: Version Data
       run: dvc pull
