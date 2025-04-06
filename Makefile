@@ -1,4 +1,4 @@
-ENV_NAME=ml_deploy_fast_api
+ENV_NAME=ml_deploy_fastapi
 ENV_FILE=environment.yml
 
 update-env:

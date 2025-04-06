@@ -63,7 +63,7 @@ def process_data(
         try:
             y = lb.transform(y.values).ravel()
         # Catch the case where y is None because we're doing inference.
-        except AttributeError:
+        except (AttributeError, ValueError):
             pass
 
     X = np.concatenate([X_continuous, X_categorical], axis=1)

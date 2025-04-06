@@ -13,6 +13,10 @@ stages:
     outs:
     - model/model.pkl
     - data/test.csv
+    - data/X_train.csv
+    - data/X_test.csv
+    - data/y_train.csv
+    - data/y_test.csv
   slices_inference:
     cmd:
     - python compute_slices.py

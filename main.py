@@ -63,7 +63,7 @@ async def startup_event():
     lb_name = params['model']['lb_name']
     cat_features = params['cat_features']
 
-    census_obj = cls.Census()
+    # census_obj = cls.Census()
     model = joblib.load(os.path.join(model_path, model_name))
     encoder = joblib.load(os.path.join(model_path, encoder_name))
     lb = joblib.load(os.path.join(model_path, lb_name))
@@ -94,6 +94,7 @@ async def predict(input: CensusData):
     print(f"input  = {input}, input type = {type(input)}")
     input_data = input.dict(by_alias=True)
     print(f"input data = {input_data}")
+    print (f"model type {type(model)}")
 
     input_df = pd.DataFrame(input_data, index=[0])
     logger.info(f"Input data: {input_df}")
@@ -102,8 +103,12 @@ async def predict(input: CensusData):
     census_obj = cls.Census()
     pred = census_obj.execute_inference(model=model, encoder=encoder, lb=lb, df=input_df)
     # Process the data
-    logger.info(f"Preds: {pred}")
-    return {"result": pred}
+    pred = lb.inverse_transform(pred)[0]
+    response = {"Salary prediction": pred}
+
+    logger.info(f"Prediction: {response}")
+
+    return response
 
 
 #if __name__ == "__main__":

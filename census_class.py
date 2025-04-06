@@ -160,6 +160,8 @@ class Census():
         # if targets  is None: targets=self.y_test
         data_path = self.data_path if path is None else path
 
+
+        print(f"\nfeatures: {features}\n")
         preds = inference(model, features)
 
         return preds
@@ -203,7 +205,8 @@ class Census():
         # self._split_data(inference=True)
         features , _,  _, _ = self._process_data(features=df, training_flag=False, encoder=encoder, lb=lb)
 
-        pred = self.make_inference(self.model, features)
+        pred = self.make_inference(model, features)
+        print(f"census_class : execute inference- prediction = {pred}")
 
         return pred
 
