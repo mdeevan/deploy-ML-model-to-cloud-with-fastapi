@@ -5,9 +5,13 @@ scikit-learn
 pytest
 requests
 fastapi==0.63.0
-pydantic
 uvicorn
 gunicorn
 joblib
 dvc
 dvc[s3]
+boto3==1.37.1
+botocore==1.37.1
+hydra-core==1.3.2
+pydantic==1.10.11
+pydantic_core==2.33.1
