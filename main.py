@@ -20,7 +20,6 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 logger = logging.getLogger()
 
 
-app = FastAPI()
 
 # Alias Generator funtion for class CensusData
 def replace_underscore(string: str) -> str:
@@ -50,6 +49,13 @@ class CensusData(BaseModel):
         alias_generator = replace_underscore
 
 
+if "render" in os.environ['PATH'] and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
+
+app = FastAPI()
 
 # Load models on startup to speed-up POST request step
 @app.on_event("startup")
