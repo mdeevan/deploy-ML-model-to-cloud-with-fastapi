@@ -35,10 +35,13 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         
+    - name: Install DVC
+      uses: iterative/setup-dvc@v2
+  
     - name: "Configure AWS Credentials"
-        # Action for GitHub Actions
-        # You may pin to the exact commit or the version.
-        # uses: aws-actions/configure-aws-credentials@ececac1a45f3b08a01d2dd070d28d111c5fe6722
+      # Action for GitHub Actions
+      # You may pin to the exact commit or the version.
+      # uses: aws-actions/configure-aws-credentials@ececac1a45f3b08a01d2dd070d28d111c5fe6722
       uses: aws-actions/configure-aws-credentials@v4.1.0
       with:
         # AWS Region, e.g. us-east-2
@@ -48,9 +51,6 @@ jobs:
         # AWS Secret Access Key. Required if aws-access-key-id is provided.
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    - name: Install DVC
-      uses: iterative/setup-dvc@v2
-  
     - name: configure storage
       run: dvc remote add -d s3-bucket s3://mlops-udacity-3/dvc/
       
