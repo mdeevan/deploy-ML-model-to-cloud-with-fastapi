@@ -12,36 +12,36 @@ stages:
       params.yaml:
         data.clean_file: census_clean.csv
         model.metric_file: metrics.json
-        n_estimators: 113
+        n_estimators: 116
     outs:
     - path: data/X_test.csv
       hash: md5
-      md5: 93c1a44d6fe8976b9bbc648c5ffcea55
+      md5: 1269d9804f2d2c763d080eaa0f97c9ec
       size: 15685800
     - path: data/X_train.csv
       hash: md5
-      md5: c61a5367d25692b7711baf29ba7d3efd
+      md5: 99617b00e5c03a48ea9d2d2cbe5f2a1d
       size: 62735400
     - path: data/metrics.json
       hash: md5
-      md5: ef88442069a1ecda0e545039d59ada7e
-      size: 92
+      md5: ff147e8310e28181b72039df3925065c
+      size: 90
     - path: data/test.csv
       hash: md5
-      md5: fe5475d1f18b9152f757844dc4ab924c
-      size: 659235
+      md5: d67a4ad0f441088ee657e6d382d6acb5
+      size: 659367
     - path: data/y_test.csv
       hash: md5
-      md5: 1f17a6ec179901fb853e22f621076439
+      md5: 1d8a5b87be0197b9146fb1a2e2abe0a2
       size: 150825
     - path: data/y_train.csv
       hash: md5
-      md5: cf2d39d11d22c46548808ae709753b47
+      md5: 006f3e07228f33d19e126db6e5a231dd
       size: 603225
     - path: model/model.pkl
       hash: md5
-      md5: f322cc1fe0edfc800df3429748bba78a
-      size: 77710377
+      md5: 618aba4d53caaffff28bbd0e75175c93
+      size: 79858809
   slices_inference:
     cmd:
     - python compute_slices.py
@@ -52,17 +52,17 @@ stages:
       size: 2502
     - path: data/test.csv
       hash: md5
-      md5: fe5475d1f18b9152f757844dc4ab924c
-      size: 659235
+      md5: d67a4ad0f441088ee657e6d382d6acb5
+      size: 659367
     - path: model/model.pkl
       hash: md5
-      md5: f322cc1fe0edfc800df3429748bba78a
-      size: 77710377
+      md5: 618aba4d53caaffff28bbd0e75175c93
+      size: 79858809
     params:
       params.yaml:
         data.clean_file: census_clean.csv
     outs:
     - path: data/slice_output.txt
       hash: md5
-      md5: 0a58e8b276e9e6a65c13a08951f009b5
-      size: 5774
+      md5: 52f94fa46b4bc544253654853f83c4cf
+      size: 5634

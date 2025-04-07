@@ -58,4 +58,4 @@ jobs:
       run: dvc pull
     - name: Test with pytest
       run: |
-        pytest
+        pytest test_model.py test_fastapi.py
