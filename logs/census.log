@@ -1,0 +1,18 @@
+2025-04-07 16:20:59 - root - INFO - Input data:    age     workclass   fnlgt  ... hours-per-week native-country salary
+0   52  Self-emp-inc  287927  ...           None           None   None
+
+[1 rows x 15 columns]
+2025-04-07 16:20:59 - root - INFO - Prediction: {'Salary prediction': np.str_('<=50K')}
+2025-04-07 16:20:59 - root - INFO - setup_class
+2025-04-07 16:20:59 - root - INFO - class created, 50 rows to read
+2025-04-07 16:20:59 - root - INFO - Testing import_data (50, 15): SUCCESS
+2025-04-07 16:20:59 - root - INFO - perform split data: SUCCESS
+2025-04-07 16:20:59 - root - INFO - train has a shape of (40, 15)
+2025-04-07 16:20:59 - root - INFO - test has a shape of (10, 15)
+2025-04-07 16:20:59 - root - INFO - test_process_data : X_train shape (40, 58), y_train shape (40,)
+2025-04-07 16:20:59 - root - INFO - process data - Train: SUCCESS
+2025-04-07 16:20:59 - root - INFO - process data - Test: SUCCESS
+2025-04-07 16:20:59 - root - INFO - test_train_model : X_train shape (40, 58), y_train shape (40,)
+2025-04-07 16:20:59 - root - INFO - Training model : SUCCESS
+2025-04-07 16:20:59 - root - INFO - Saving Model: SUCCESS
+2025-04-07 16:20:59 - root - INFO - Teardown_class
