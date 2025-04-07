@@ -58,6 +58,7 @@ jobs:
       
     - name: Version Data
       run: dvc pull
+
     - name: Test with pytest
-      run: |
-        pytest test_model.py test_fastapi.py
+      run: 
+        pytest ./test_model.py ./test_fastapi.py
