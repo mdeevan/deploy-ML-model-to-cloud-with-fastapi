@@ -30,7 +30,7 @@ class TestCensus():
     test = None
 
     logging.basicConfig(
-        filename='./logs/census.log',
+        filename='logs/census.log',
         level=logging.INFO,
         filemode='w',
         force=True,
