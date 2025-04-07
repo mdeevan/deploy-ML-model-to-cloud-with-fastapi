@@ -61,4 +61,4 @@ jobs:
 
     - name: Test with pytest
       run: 
-        python -m pytest ./test_model.py ./test_fastapi.py
+        python -m pytest  
