@@ -12,36 +12,36 @@ stages:
       params.yaml:
         data.clean_file: census_clean.csv
         model.metric_file: metrics.json
-        n_estimators: 113
+        n_estimators: 131
     outs:
     - path: data/X_test.csv
       hash: md5
-      md5: 93c1a44d6fe8976b9bbc648c5ffcea55
-      size: 15685800
+      md5: dfa14039a1ad586dd02810ed8052e4d2
+      size: 15534975
     - path: data/X_train.csv
       hash: md5
-      md5: c61a5367d25692b7711baf29ba7d3efd
-      size: 62735400
+      md5: e3a8d1fe4501ae4a70b9de02267373d4
+      size: 62132175
     - path: data/metrics.json
       hash: md5
-      md5: ef88442069a1ecda0e545039d59ada7e
-      size: 92
+      md5: 9968f4251952f6f8692019b1ecec46e2
+      size: 83
     - path: data/test.csv
       hash: md5
-      md5: fe5475d1f18b9152f757844dc4ab924c
-      size: 659235
+      md5: d1f5ab6e289c329517bf40a240be244f
+      size: 659251
     - path: data/y_test.csv
       hash: md5
-      md5: 1f17a6ec179901fb853e22f621076439
+      md5: 77a3e89f6924c880d0a1b58842cc3db9
       size: 150825
     - path: data/y_train.csv
       hash: md5
-      md5: cf2d39d11d22c46548808ae709753b47
+      md5: 90f543aafec1e5a391fef18dcf4fe67b
       size: 603225
     - path: model/model.pkl
       hash: md5
-      md5: f322cc1fe0edfc800df3429748bba78a
-      size: 77710377
+      md5: fbda9fbb99e15dbd6c6eb9d0e45a9e13
+      size: 89688329
   slices_inference:
     cmd:
     - python compute_slices.py
@@ -52,17 +52,25 @@ stages:
       size: 2502
     - path: data/test.csv
       hash: md5
-      md5: fe5475d1f18b9152f757844dc4ab924c
-      size: 659235
+      md5: d1f5ab6e289c329517bf40a240be244f
+      size: 659251
+    - path: model/encoder.pkl
+      hash: md5
+      md5: af80b908a0d4f300f71d2fddfa0f034e
+      size: 4069
+    - path: model/lb.pkl
+      hash: md5
+      md5: c593441a63c5b211a07cb9e09d8e25fd
+      size: 447
     - path: model/model.pkl
       hash: md5
-      md5: f322cc1fe0edfc800df3429748bba78a
-      size: 77710377
+      md5: fbda9fbb99e15dbd6c6eb9d0e45a9e13
+      size: 89688329
     params:
       params.yaml:
         data.clean_file: census_clean.csv
     outs:
     - path: data/slice_output.txt
       hash: md5
-      md5: 0a58e8b276e9e6a65c13a08951f009b5
-      size: 5774
+      md5: 3402e6d31423ec9777d374633f78d08c
+      size: 5889

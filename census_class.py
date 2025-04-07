@@ -161,7 +161,7 @@ class Census():
         data_path = self.data_path if path is None else path
 
 
-        print(f"\nfeatures: {features}\n")
+        # print(f"\nfeatures: {features}\n")
         preds = inference(model, features)
 
         return preds

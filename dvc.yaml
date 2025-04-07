@@ -12,6 +12,8 @@ stages:
     - data/metrics.json
     outs:
     - model/model.pkl
+    - model/encoder.pkl
+    - model/lb.pkl
     - data/test.csv
     - data/X_train.csv
     - data/X_test.csv
@@ -23,6 +25,8 @@ stages:
     deps:
     - compute_slices.py
     - model/model.pkl
+    - model/encoder.pkl
+    - model/lb.pkl
     - data/test.csv
     params:
     - data.clean_file
