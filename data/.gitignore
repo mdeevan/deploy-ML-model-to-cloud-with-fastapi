@@ -1,7 +1,9 @@
 
 
 /slice_output.txt
-/X_*.csv
-/y_*/csv
+/X_train.csv
+/X_test.csv
+/y_train.csv
+/y_test.csv
 /test.csv
 /metrics.json
