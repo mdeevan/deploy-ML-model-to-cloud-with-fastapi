@@ -13,6 +13,8 @@ import uvicorn
 import logging
 import os
 import dvc.api
+import boto3
+
 
 import census_class as cls
 
@@ -50,10 +52,13 @@ class CensusData(BaseModel):
 
 
 if "render" in os.environ['PATH'] and os.path.isdir(".dvc"):
+
+    print("loading files from dvc")
     os.system("dvc config core.no_scm true")
     if os.system("dvc pull") != 0:
+        print("dvc load failed")
         exit("dvc pull failed")
-    os.system("rm -r .dvc .apt/usr/lib/dvc")
+    # os.system("rm -r .dvc .apt/usr/lib/dvc")
 
 app = FastAPI()
 
