@@ -93,21 +93,22 @@ async def get_root() -> dict:
 
 # POST request to /predict site. Used to validate model with sample census data
 @app.post('/predict')
-async def predict(input: CensusData):
+async def predict(input: CensusData) -> str:
     """
     POST request that will provide sample census data and expect a prediction
 
     Output:
-        0 or 1
+        Salary value as,  >50K or <=50K
     """
 
     # Read data sent as POST
     print(f"input  = {input}, input type = {type(input)}")
     input_data = input.dict(by_alias=True)
-    print(f"input data = {input_data}")
-    print (f"model type {type(model)}")
+    print(f"input data \n {input_data}")
+    print (f"model type \n{type(model)}")
 
     input_df = pd.DataFrame(input_data, index=[0])
+    print(f"input df \n {input_df}")
     logger.info(f"Input data: {input_df}")
 
 
@@ -116,10 +117,15 @@ async def predict(input: CensusData):
     # Process the data
     pred = lb.inverse_transform(pred)[0]
     response = {"Salary prediction": pred}
+    # response = pred
 
     logger.info(f"Prediction: {response}")
 
-    return response
+    # return response
+    try:
+        return response
+    except ValidationError as e:
+        raise HTTPException(status_code=422, detail=e.errors())
 
 
 #if __name__ == "__main__":

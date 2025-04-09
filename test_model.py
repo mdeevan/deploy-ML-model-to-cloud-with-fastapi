@@ -93,7 +93,7 @@ class TestCensus():
         '''
         test test split data
         '''
-
+ 
         try:
             TestCensus.census_obj._split_data()
 
