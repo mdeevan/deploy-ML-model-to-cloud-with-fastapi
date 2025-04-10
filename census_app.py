@@ -30,27 +30,6 @@ FASTAPI_BASE_URL = "http://localhost:8000"
 PREDICT_ENDPOINT = f"{FASTAPI_BASE_URL}/predict"
 DATA_ENDPOINT = f"{FASTAPI_BASE_URL}/data"
 
-class selections():
-    '''
-        static class to hold the values of the category variables
-    '''
-
-    values_list = {}
-
-
-    @staticmethod
-    def get_category_values():
-        params = dvc.api.params_show()
-        categories = params['cat_features']
-        clean_data_path = params['data']['path']
-        clean_data_file = params['data']['clean_file']
-        filepath = os.path.join(clean_data_path, clean_data_file)
-        df = pd.read_csv(filepath)
-
-        for category in categories:
-            selections.values_list[category] = df[category].unique().tolist()
-
-
 def show_prediction_form():
     st.header("Salary Prediction (POST)")
     
@@ -61,39 +40,32 @@ def show_prediction_form():
             age = st.number_input("Age", min_value=17, max_value=90, value=39)
             workclass = st.selectbox(
                 "Workclass",
-                selections.values_list['workclass']
-                # ["State-gov", "Private", "Self-emp", "Federal-gov", "Local-gov"]
+                st.session_state.values_list['workclass']
             )
             education = st.selectbox(
                 "Education",
-                selections.values_list['education']
-                # ["Bachelors", "Masters", "HS-grad", "Some-college", "Doctorate"]
+                st.session_state.values_list['education']
             )
             marital_status = st.selectbox(
                 "Marital Status",
-                selections.values_list['marital-status']
-                # ["Never-married", "Married", "Divorced", "Separated", "Widowed"]
+                st.session_state.values_list['marital-status']
             )
             occupation = st.selectbox(
                 "Occupation",
-                selections.values_list['occupation']
-                # ["Adm-clerical", "Exec-managerial", "Prof-specialty", "Tech-support", "Other"]
+                st.session_state.values_list['occupation']
             )
             relationship = st.selectbox(
                 "Relationship",
-                selections.values_list['relationship']
-                # ["Not-in-family", "Husband", "Wife", "Own-child", "Unmarried"]
+                st.session_state.values_list['relationship']
             )
             
         with col2:
             race = st.selectbox(
                 "Race",
-                selections.values_list['race']
-                # ["White", "Black", "Asian-Pac-Islander", "Amer-Indian-Eskimo", "Other"]
+                st.session_state.values_list['race']
             )
             sex = st.selectbox("Sex", 
-                            #    ["Female", "Male"]
-                               selections.values_list['sex']
+                               st.session_state.values_list['sex']
                                )
                 
             capital_gain = st.number_input("Capital Gain", min_value=0, value=2174)
@@ -101,8 +73,7 @@ def show_prediction_form():
             hours_per_week = st.number_input("Hours/Week", min_value=1, max_value=99, value=40)
             native_country = st.selectbox(
                 "Native Country",
-                selections.values_list['native-country']
-                # ["United-States", "Mexico", "Canada", "Germany", "Philippines"]
+                st.session_state.values_list['native-country']
             )
             fnlgt = st.number_input("FNLGT", min_value=0, value=77516)
             education_num = st.number_input(
@@ -161,8 +132,8 @@ def show_data_view():
 
 def main():
     if 'initialized' not in st.session_state or not st.session_state.initialized:
+        print("inside initialization")
         
-        ### TODO: make the dictionary initilaization here
         params = dvc.api.params_show()
         categories = params['cat_features']
         clean_data_path = params['data']['path']
@@ -170,10 +141,13 @@ def main():
         filepath = os.path.join(clean_data_path, clean_data_file)
         df = pd.read_csv(filepath)
 
+        values_list = {}
         for category in categories:
+            values_list[category] = df[category].unique().tolist()
 
-        selections.get_category_values()
-        print("inside initialization")
+        st.session_state.values_list = values_list
+
+        df = None
 
         st.write("Initializing category values")
         st.session_state.initialized = True  # Mark initialization as done to avoid re-running
