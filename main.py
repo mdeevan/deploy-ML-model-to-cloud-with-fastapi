@@ -102,13 +102,13 @@ async def predict(input: CensusData) -> str:
     """
 
     # Read data sent as POST
-    print(f"input  = {input}, input type = {type(input)}")
+    # print(f"input  = {input}, input type = {type(input)}")
     input_data = input.dict(by_alias=True)
-    print(f"input data \n {input_data}")
-    print (f"model type \n{type(model)}")
+    # print(f"input data \n {input_data}")
+    # print (f"model type \n{type(model)}")
 
     input_df = pd.DataFrame(input_data, index=[0])
-    print(f"input df \n {input_df}")
+    # print(f"input df \n {input_df}")
     logger.info(f"Input data: {input_df}")
 
 

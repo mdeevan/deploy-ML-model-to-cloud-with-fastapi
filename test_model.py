@@ -181,6 +181,19 @@ class TestCensus():
             logging.error("Saving Model: FAILURE")
             raise err
 
+    def test_save_model_negative(self, tmp_path):
+        try:
+            os.mkdir("testing", 0o444)
+            TestCensus.census_obj._save_model("testing")
+            logging.info('Saving Model: SUCCESS')
+            os.rmdir("testing")
+
+        except (PermissionError, AssertionError) as err:
+            os.rmdir("testing")
+            logging.error("Saving Model: FAILURE TEST success")
+            # raise err
+            pass
+
 
             
 

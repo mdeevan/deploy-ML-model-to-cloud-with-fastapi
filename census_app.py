@@ -115,24 +115,15 @@ def show_prediction_form():
                 st.error("Could not connect to API server")
 
 def show_data_view():
-    st.header("Historical Data (GET)")
-    if st.button("Fetch Data"):
-        try:
-            response = requests.get(DATA_ENDPOINT)
-            if response.status_code == 200:
-                data = response.json()
-                if data:
-                    st.dataframe(data)
-                else:
-                    st.info("No data available")
-            else:
-                st.error(f"API Error: {response.text}")
-        except requests.ConnectionError:
-            st.error("Could not connect to API server")
+    st.header("About")
+    st.text("Udacity Machine Learning DevOps Engineer - Nanodegree")
+    st.text("Project 3 - Deploying scalable ML pipeline in production")
+    st.text("Use the Make prediction tab to run prediction")
+
 
 def main():
     if 'initialized' not in st.session_state or not st.session_state.initialized:
-        print("inside initialization")
+        # print("inside initialization")
         
         params = dvc.api.params_show()
         categories = params['cat_features']
@@ -149,17 +140,17 @@ def main():
 
         df = None
 
-        st.write("Initializing category values")
+        # st.write("Initializing category values")
         st.session_state.initialized = True  # Mark initialization as done to avoid re-running
         
-    else:
-        print("intialization failed")
-        st.write("Initialization already done.")
+    # else:
+    #     # print("intialization failed")
+    #     st.write("Initialization already done.")
 
     st.sidebar.title("Census Data API")
     action = st.sidebar.radio(
         "Select Operation",
-        ["Make Prediction", "View Historical Data"]
+        ["About", "Make Prediction"]
     )
     
     if action == "Make Prediction":

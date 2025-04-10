@@ -122,8 +122,9 @@ class Census():
             joblib.dump(self.model,   os.path.join(model_path, self.model_name))
             joblib.dump(self.encoder, os.path.join(model_path, self.encoder_name))
             joblib.dump(self.lb,      os.path.join(model_path, self.lb_name))
-        except:
+        except PermissionError as err:
             print("Error saving model")
+            raise #Exception(err)
 
     def _save_data_split(self, path=None):
 

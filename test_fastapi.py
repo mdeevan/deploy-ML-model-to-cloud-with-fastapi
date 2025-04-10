@@ -6,24 +6,24 @@ import os
 
 from main import app
 
-# client = TestClient(app)
 
-
-# @app.on_event("startup")
-# async def startup_event():
-#     global model, encoder, lb, cat_features
-
-#     params = dvc.api.params_show()
-#     model_path = params['model']['model_path']
-#     model_name = params['model']['model_name']
-#     encoder_name = params['model']['encoder_name']
-#     lb_name = params['model']['lb_name']
-#     cat_features = params['cat_features']
-
-#     # census_obj = cls.Census()
-#     model = joblib.load(os.path.join(model_path, model_name))
-#     encoder = joblib.load(os.path.join(model_path, encoder_name))
-#     lb = joblib.load(os.path.join(model_path, lb_name))
+# Test data
+VALID_CENSUS_DATA = {
+    "age": 39,
+    "workclass": "State-gov",
+    "fnlgt": 77516,
+    "education": "Bachelors",
+    "education-num": 13,
+    "marital-status": "Never-married",
+    "occupation": "Adm-clerical",
+    "relationship": "Not-in-family",
+    "race": "White",
+    "sex": "Female",
+    "capital-gain": 2174,
+    "capital-loss": 0,
+    "hours-per-week": 40,
+    "native-country": "United-States"
+}
 
 def test_root():
     with TestClient(app) as client:
@@ -32,22 +32,17 @@ def test_root():
 
 
 def test_predict_positive():
-    data = {"age": 52,
-            "workclass": "Self-emp-inc",
-            "fnlgt": 287927,
-            "education": "HS-grad",
-            "education_num": 9,
-            "marital_status": "Married-civ-spouse",
-            "occupation": "Exec-managerial",
-            "relationship": "Wife",
-            "race": "White",
-            "sex": "Female",
-            "capital_gain": 15024,
-            "capital_loss": 0,
-            "hours_per_week": 40,
-            "native_country": "United-States"
-            }
     with TestClient(app) as client:
-        response = client.post("/predict", data=json.dumps(data))
+        response = client.post("/predict", json=VALID_CENSUS_DATA)
         assert response.status_code == 200
         assert response.json() == {"Salary prediction": "<=50K"}
+
+def test_predict_negative():
+    with TestClient(app) as client:
+        invalid_data = VALID_CENSUS_DATA.copy()
+        invalid_data["age"] = "not-an-integer"
+
+        response = client.post("/predict", json=invalid_data)
+        print(f"reponse json: {response.json()}")
+
+        assert response.status_code == 422

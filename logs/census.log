@@ -1,18 +1,19 @@
-2025-04-08 15:30:34 - root - INFO - Input data:    age     workclass   fnlgt  ... hours-per-week native-country salary
-0   52  Self-emp-inc  287927  ...           None           None   None
+2025-04-10 17:03:27 - root - INFO - Input data:    age  workclass  fnlgt  ... hours-per-week  native-country salary
+0   39  State-gov  77516  ...             40   United-States   None
 
 [1 rows x 15 columns]
-2025-04-08 15:30:34 - root - INFO - Prediction: {'Salary prediction': np.str_('<=50K')}
-2025-04-08 15:30:34 - root - INFO - setup_class
-2025-04-08 15:30:34 - root - INFO - class created, 50 rows to read
-2025-04-08 15:30:34 - root - INFO - Testing import_data (50, 15): SUCCESS
-2025-04-08 15:30:34 - root - INFO - perform split data: SUCCESS
-2025-04-08 15:30:34 - root - INFO - train has a shape of (40, 15)
-2025-04-08 15:30:34 - root - INFO - test has a shape of (10, 15)
-2025-04-08 15:30:34 - root - INFO - test_process_data : X_train shape (40, 58), y_train shape (40,)
-2025-04-08 15:30:34 - root - INFO - process data - Train: SUCCESS
-2025-04-08 15:30:34 - root - INFO - process data - Test: SUCCESS
-2025-04-08 15:30:34 - root - INFO - test_train_model : X_train shape (40, 58), y_train shape (40,)
-2025-04-08 15:30:35 - root - INFO - Training model : SUCCESS
-2025-04-08 15:30:35 - root - INFO - Saving Model: SUCCESS
-2025-04-08 15:30:35 - root - INFO - Teardown_class
+2025-04-10 17:03:27 - root - INFO - Prediction: {'Salary prediction': np.str_('<=50K')}
+2025-04-10 17:03:28 - root - INFO - setup_class
+2025-04-10 17:03:28 - root - INFO - class created, 50 rows to read
+2025-04-10 17:03:28 - root - INFO - Testing import_data (50, 15): SUCCESS
+2025-04-10 17:03:28 - root - INFO - perform split data: SUCCESS
+2025-04-10 17:03:28 - root - INFO - train has a shape of (40, 15)
+2025-04-10 17:03:28 - root - INFO - test has a shape of (10, 15)
+2025-04-10 17:03:28 - root - INFO - test_process_data : X_train shape (40, 56), y_train shape (40,)
+2025-04-10 17:03:28 - root - INFO - process data - Train: SUCCESS
+2025-04-10 17:03:28 - root - INFO - process data - Test: SUCCESS
+2025-04-10 17:03:28 - root - INFO - test_train_model : X_train shape (40, 56), y_train shape (40,)
+2025-04-10 17:03:28 - root - INFO - Training model : SUCCESS
+2025-04-10 17:03:28 - root - INFO - Saving Model: SUCCESS
+2025-04-10 17:03:28 - root - ERROR - Saving Model: FAILURE TEST success
+2025-04-10 17:03:28 - root - INFO - Teardown_class
