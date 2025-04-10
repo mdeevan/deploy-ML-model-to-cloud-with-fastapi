@@ -22,8 +22,9 @@ VALID_CENSUS_DATA = {
     "capital-gain": 2174,
     "capital-loss": 0,
     "hours-per-week": 40,
-    "native-country": "United-States"
+    "native-country": "United-States",
 }
+
 
 def test_root():
     with TestClient(app) as client:
@@ -36,6 +37,7 @@ def test_predict_positive():
         response = client.post("/predict", json=VALID_CENSUS_DATA)
         assert response.status_code == 200
         assert response.json() == {"Salary prediction": "<=50K"}
+
 
 def test_predict_negative():
     with TestClient(app) as client:

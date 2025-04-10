@@ -6,3 +6,9 @@ update-env:
 
 test:
 	pytest  test_model.py
+
+format:
+	black *.py
+
+lint:
+	pylint *.py
