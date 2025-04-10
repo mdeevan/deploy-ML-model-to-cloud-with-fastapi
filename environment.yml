@@ -15,6 +15,7 @@ dependencies:
   - gunicorn
   - joblib
   - libsqlite==3.48.0
+  - pylint
   - pip=23.3
   - pip:
     - dvc[s3]

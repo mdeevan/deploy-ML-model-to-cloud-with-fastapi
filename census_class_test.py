@@ -18,6 +18,7 @@ class TestCensus():
 
     census_obj = None
     encoder = None
+    model = None
     lb = None
     df = None
 
@@ -28,6 +29,7 @@ class TestCensus():
     n_estimators = None
     train = None
     test = None
+    preds = None
 
     logging.basicConfig(
         filename='logs/census.log',
@@ -140,7 +142,7 @@ class TestCensus():
             raise err
 
         try:
-            X_test, y_test, _, _ = TestCensus.census_obj._process_data(training_flag=False, features=TestCensus.test , encoder=TestCensus.encoder, lb=TestCensus.lb)
+            TestCensus.X_test, TestCensus.y_test, _, _ = TestCensus.census_obj._process_data(training_flag=False, features=TestCensus.test , encoder=TestCensus.encoder, lb=TestCensus.lb)
             logging.info("process data - Test: SUCCESS")
 
         except AssertionError as err:
@@ -163,6 +165,8 @@ class TestCensus():
                                                TestCensus.y_train, 
                                                TestCensus.census_obj.n_estimators)
 
+            TestCensus.model = TestCensus.census_obj.model
+
             if TestCensus.census_obj.model is not None:
                 logging.info("Training model : SUCCESS")
             else:
@@ -171,6 +175,14 @@ class TestCensus():
         except (AssertionError, AttributeError) as err:
             logging.error("Training model: FAILURE")
             raise err
+
+    def test_save_data_split(self, tmp_path):
+        try:
+            TestCensus.census_obj._save_data_split()
+            logging.info('Test save selfTest save data split: SUCCESS')
+        except:
+            logging.info('Test save data split: FAILURE')
+
 
     def test_save_model(self, tmp_path):
         try:
@@ -194,8 +206,29 @@ class TestCensus():
             # raise err
             pass
 
+    def test_make_inference(self, tmp_path):
+        try:
+            # print(f"X_Test : {TestCensus.X_test}")
+            TestCensus.preds = TestCensus.census_obj.make_inference(TestCensus.model, TestCensus.X_test, path=tmp_path)
 
+            logging.error("Make inference : SUCCESS")
+
+        except:
+            logging.error("Make inference : FAILED")
+
+
+    def test_compute_metrics(self, tmp_path):
+        try:
+            TestCensus.census_obj._compute_metrics(TestCensus.y_test, TestCensus.preds, path=tmp_path)
+            logging.error("Metrics compute : SUCCESS")
+
+        except:
+            logging.error("Metrics compute : FAILED")
             
+
+    def test_execute_training(self):
+
+        TestCensus.census_obj.execute_training()
 
     # def test_save_data_split(self, tmp_path):
     #     try:
