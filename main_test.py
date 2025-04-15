@@ -1,14 +1,27 @@
-import json
+"""
+main_test.py
+
+Test the main.py using pytest
+
+"""
+
+# import os
+# import json
+
 from fastapi.testclient import TestClient
-import dvc.api
-import joblib
-import os
+
+# import dvc.api
+# import joblib
 
 from main import app
 
 
 # Test data
 VALID_CENSUS_DATA = {
+    """
+        define a test data as default
+
+    """
     "age": 39,
     "workclass": "State-gov",
     "fnlgt": 77516,
@@ -27,12 +40,19 @@ VALID_CENSUS_DATA = {
 
 
 def test_root():
+    """'
+    test the funciton is callable and responding
+    the app is getting created as part of the test execution
+    """
     with TestClient(app) as client:
         r = client.get("/")
         assert r.status_code == 200
 
 
 def test_predict_positive():
+    """
+    test a positive case of predict using the test data setup above
+    """
     with TestClient(app) as client:
         response = client.post("/predict", json=VALID_CENSUS_DATA)
         assert response.status_code == 200
@@ -40,6 +60,9 @@ def test_predict_positive():
 
 
 def test_predict_negative():
+    """
+    test negative predict API by modifying one attribute with invalid data
+    """
     with TestClient(app) as client:
         invalid_data = VALID_CENSUS_DATA.copy()
         invalid_data["age"] = "not-an-integer"

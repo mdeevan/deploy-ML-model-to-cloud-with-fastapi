@@ -1,6 +1,8 @@
 """
 Author: Muhammad Naveed
 Created On : April 4th, 2025
+
+class to test the model
 """
 
 import os
@@ -76,7 +78,7 @@ class TestCensus:
             TestCensus.df = TestCensus.census_obj.data
 
             TestCensus.logging.info(
-                f"Testing import_data {TestCensus.df.shape}: SUCCESS"
+                "Testing import_data %s: SUCCESS", TestCensus.df.shape
             )
 
         except FileNotFoundError as err:
@@ -136,7 +138,8 @@ class TestCensus:
         """
 
         try:
-            # self.X_train, self.y_train, self.encoder, self.lb = TestCensus.census_obj._process_data(True)
+            # self.X_train, self.y_train, self.encoder, self.lb =
+            # TestCensus.census_obj._process_data(True)
             (
                 TestCensus.X_train,
                 TestCensus.y_train,
@@ -145,7 +148,11 @@ class TestCensus:
             ) = TestCensus.census_obj._process_data(training_flag=True)
 
             logging.info(
-                f"test_process_data : X_train shape {TestCensus.X_train.shape}, y_train shape {TestCensus.y_train.shape}"
+                # f"test_process_data : X_train shape {TestCensus.X_train.shape}, \
+                #     y_train shape {TestCensus.y_train.shape}"
+                "test_process_data : X_train shape %s`, y_train shape %s",
+                TestCensus.X_train.shape,
+                TestCensus.y_train.shape,
             )
             logging.info("process data - Train: SUCCESS")
 
@@ -179,7 +186,9 @@ class TestCensus:
         """
 
         logging.info(
-            f"test_train_model : X_train shape {TestCensus.X_train.shape}, y_train shape {TestCensus.y_train.shape}"
+            "test_train_model : X_train shape %s, y_train shape %s",
+            TestCensus.X_train.shape,
+            TestCensus.y_train.shape,
         )
         try:
             TestCensus.census_obj._train_model(
@@ -200,13 +209,20 @@ class TestCensus:
             raise err
 
     def test_save_data_split(self, tmp_path):
+        """
+        test the save of the data split in train and test
+        """
         try:
             TestCensus.census_obj._save_data_split()
             logging.info("Test save selfTest save data split: SUCCESS")
-        except:
-            logging.info("Test save data split: FAILURE")
+        except Exception as err:
+            logging.info("Test save data split: FAILURE with error %s", err)
 
     def test_save_model(self, tmp_path):
+        """
+        saving the model in the tmp-path,
+        tmp-path is an internal path passed by pytest
+        """
         try:
             TestCensus.census_obj._save_model(tmp_path)
             logging.info("Saving Model: SUCCESS")
@@ -216,6 +232,9 @@ class TestCensus:
             raise err
 
     def test_save_model_negative(self, tmp_path):
+        """
+        save model negative test
+        """
         try:
             os.mkdir("testing", 0o444)
             TestCensus.census_obj._save_model("testing")
@@ -224,11 +243,14 @@ class TestCensus:
 
         except (PermissionError, AssertionError) as err:
             os.rmdir("testing")
-            logging.error("Saving Model: FAILURE TEST success")
+            logging.error("Saving Model: FAILURE TEST success. Error : %s", err)
             # raise err
-            pass
 
     def test_make_inference(self, tmp_path):
+        """
+        make inference, on the model created as part of the testing
+        and available in tmp-path
+        """
         try:
             # print(f"X_Test : {TestCensus.X_test}")
             TestCensus.preds = TestCensus.census_obj.make_inference(
@@ -237,10 +259,13 @@ class TestCensus:
 
             logging.error("Make inference : SUCCESS")
 
-        except:
-            logging.error("Make inference : FAILED")
+        except Exception as err:
+            logging.error("Make inference : FAILED with Error %s", err)
 
     def test_compute_metrics(self, tmp_path):
+        """
+        compute the metrics
+        """
         try:
             TestCensus.census_obj._compute_metrics(
                 TestCensus.y_test, TestCensus.preds, path=tmp_path
@@ -251,6 +276,11 @@ class TestCensus:
             logging.error("Metrics compute : FAILED")
 
     def test_execute_training(self):
+        """
+        execute trianing is a method that clubs all the
+        interdependent methods in the cencus training class
+        so its more of convenience function, and is tested here
+        """
 
         TestCensus.census_obj.execute_training()
 
@@ -264,8 +294,8 @@ class TestCensus:
     #         raise err
 
 
-if __name__ == "__main__":
-    pass
-    # import pytest
-    # pytest.main([__file__])
-    # test_import_data()
+# if __name__ == "__main__":
+#     pass
+# import pytest
+# pytest.main([__file__])
+# test_import_data()

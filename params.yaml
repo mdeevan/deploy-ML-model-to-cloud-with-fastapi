@@ -1,4 +1,4 @@
-n_estimators: 131
+n_estimators: 133
 data:
   path: data/
   raw_file: census.csv
@@ -20,3 +20,5 @@ cat_features:
 - race
 - sex
 - native-country
+fastapi_base_url: 
+- http://localhost:8000 

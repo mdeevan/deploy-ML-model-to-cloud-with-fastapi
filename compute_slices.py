@@ -1,11 +1,17 @@
-import pandas as pd
-import joblib
-from ml.model import inference, compute_model_metrics
-from ml.data import process_data
+"""
+compute the metrics for each of the categories and store the result in a text file
+all parameters are defined in dvc params.yml
+"""
 
-import dvc.api
 import os
 import csv
+
+import pandas as pd
+import joblib
+import dvc.api
+
+from ml.model import inference, compute_model_metrics
+from ml.data import process_data
 
 
 def compute_slices():
@@ -27,13 +33,13 @@ def compute_slices():
 
     params = dvc.api.params_show()
 
-    n_estimators = params["n_estimators"]
+    # n_estimators = params["n_estimators"]
 
     data_path = params["data"]["path"]
-    clean_data_file = params["data"]["clean_file"]
+    # clean_data_file = params["data"]["clean_file"]
     sliced_name = params["data"]["sliced_name"]
 
-    test_size = params["data"]["test_size"]
+    # test_size = params["data"]["test_size"]
 
     model_path = params["model"]["model_path"]
     model_name = params["model"]["model_name"]
@@ -75,7 +81,7 @@ def compute_slices():
             slices_inference_list.append([cat, feature, precision, recall, fbeta])
 
     outfile = os.path.join(data_path, sliced_name)
-    with open(outfile, "wt") as fp:
+    with open(outfile, "wt", encoding="utf-8") as fp:
         writer = csv.writer(fp, delimiter=",")
         writer.writerow(
             ["category", "features", "precision", "recall", "fbeta"]

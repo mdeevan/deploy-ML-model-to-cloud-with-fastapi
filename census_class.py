@@ -1,23 +1,33 @@
-# Script to train machine learning model.
+"""
+census_class.py
 
-import os
+machine learning training is encapsulated as a class
+"""
 
-from sklearn.model_selection import train_test_split
-
-import pandas as pd
-import numpy as np
-from ml.data import process_data
-from ml.model import train_model, compute_model_metrics, inference
-import joblib
-
-import dvc.api
 import os
 import json
 
+import pandas as pd
+import numpy as np
+
+from sklearn.model_selection import train_test_split
+
+import joblib
+import dvc.api
+
+from ml.data import process_data
+from ml.model import train_model, compute_model_metrics, inference
+
 
 class Census:
+    """
+    census class encapsulating the all steps in training the model
+    i.e., reading data, cleaning, splitting, training, and saving models
+    as well as for prediction i.e., inference, compute metrics
 
-    def __init__(self, nrows=None, inference=False):
+    """
+
+    def __init__(self, nrows=None, infer=False):
         """
         Initialize the class object
         INPUT:
@@ -45,7 +55,7 @@ class Census:
         self.clean_data_file = self.params["data"]["clean_file"]
 
         #  0 test size would mean effectively no split
-        self.test_size = 0 if inference else self.params["data"]["test_size"]
+        self.test_size = 0 if infer else self.params["data"]["test_size"]
 
         self.model_path = self.params["model"]["model_path"]
         self.model_name = self.params["model"]["model_name"]
@@ -68,6 +78,7 @@ class Census:
         self.lb = None
 
         self.model = None
+        self.preds = None
 
     # Private method
     def _read_data(self, path=None, data_file=None):
@@ -130,7 +141,7 @@ class Census:
             joblib.dump(self.encoder, os.path.join(model_path, self.encoder_name))
             joblib.dump(self.lb, os.path.join(model_path, self.lb_name))
         except PermissionError as err:
-            print("Error saving model")
+            print(f"Error saving model : error: {err}")
             raise  # Exception(err)
 
     def _save_data_split(self, path=None):
@@ -168,8 +179,9 @@ class Census:
             model = self.model
         if features is None:
             features = self.X_test
+
         # if targets  is None: targets=self.y_test
-        data_path = self.data_path if path is None else path
+        # data_path = self.data_path if path is None else path
 
         # print(f"\nfeatures: {features}\n")
         preds = inference(model, features)
@@ -184,7 +196,7 @@ class Census:
         outfile = os.path.join(data_path, self.metric_file)
         print(f"output metric: {outfile}")
 
-        with open(outfile, "w") as f:
+        with open(outfile, "w", encoding="utf-8") as f:
             json.dump({"precision": precision, "recall": recall, "fbeta": fbeta}, f)
 
     def execute_training(self):

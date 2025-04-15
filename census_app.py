@@ -1,15 +1,26 @@
+"""
+census_app.py
+
+streamlit based frontend application to make Salary prediction
+basd on the model trained
+
+"""
+
 # census_app.py - Streamlit Application
+import os
+from typing import Optional
+import pandas as pd
 import streamlit as st
 import requests
 from pydantic import BaseModel, Field
-from typing import Optional
 import dvc.api
-import pandas as pd
-import os
 
 
-# Define Pydantic model matching FastAPI
 class CensusData(BaseModel):
+    """
+    defining a pydantic model for fastAPI
+    """
+
     age: int = Field(..., example=39)
     workclass: str = Field(..., example="State-gov")
     fnlgt: int = Field(..., example=77516)
@@ -34,6 +45,10 @@ DATA_ENDPOINT = f"{FASTAPI_BASE_URL}/data"
 
 
 def show_prediction_form():
+    """
+    show the streamlit form to accept the parameters
+    to predict the salary
+    """
     st.header("Salary Prediction (POST)")
 
     with st.form(key="census_form"):
@@ -99,7 +114,9 @@ def show_prediction_form():
             }
 
             try:
-                response = requests.post(PREDICT_ENDPOINT, json=census_data)
+                response = requests.post(
+                    st.session_state.fastapi_predict_url, json=census_data, timeout=10
+                )
                 if response.status_code == 200:
                     prediction = response.json().get("Salary prediction", "Unknown")
                     st.success(f"Prediction Result: {prediction}")
@@ -110,6 +127,9 @@ def show_prediction_form():
 
 
 def show_data_view():
+    """
+    display about page with static text
+    """
     st.header("About")
     st.text("Udacity Machine Learning DevOps Engineer - Nanodegree")
     st.text("Project 3 - Deploying scalable ML pipeline in production")
@@ -117,6 +137,12 @@ def show_data_view():
 
 
 def main():
+    """
+    main function
+    it initialized the parameters based on the values in dvc.params file
+
+    displays the main page with available options
+    """
     if "initialized" not in st.session_state or not st.session_state.initialized:
         # print("inside initialization")
 
@@ -124,6 +150,16 @@ def main():
         categories = params["cat_features"]
         clean_data_path = params["data"]["path"]
         clean_data_file = params["data"]["clean_file"]
+
+        fastapi_base_url = params["fastapi_base_url"]
+
+        # global FASTAPI_BASE_URL, PREDICT_ENDPOINT, DATA_ENDPOINT
+        # # FASTAPI_BASE_URL = "http://localhost:8000"
+
+        # FASTAPI_BASE_URL = params['fastapi_base_url']
+        # PREDICT_ENDPOINT = f"{FASTAPI_BASE_URL}/predict"
+        # DATA_ENDPOINT = f"{FASTAPI_BASE_URL}/data"
+
         filepath = os.path.join(clean_data_path, clean_data_file)
         df = pd.read_csv(filepath)
 
@@ -132,6 +168,7 @@ def main():
             values_list[category] = df[category].unique().tolist()
 
         st.session_state.values_list = values_list
+        st.session_state.fastapi_predict_url = f"{fastapi_base_url}/predict"
 
         df = None
 
