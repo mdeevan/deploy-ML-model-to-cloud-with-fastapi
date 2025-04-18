@@ -1,21 +1,21 @@
-2025-04-15 19:57:32 - root - INFO - setup_class
-2025-04-15 19:57:32 - root - INFO - class created, 50 rows to read
-2025-04-15 19:57:32 - root - INFO - Testing import_data (50, 15): SUCCESS
-2025-04-15 19:57:32 - root - INFO - perform split data: SUCCESS
-2025-04-15 19:57:32 - root - INFO - train has a shape of (40, 15)
-2025-04-15 19:57:32 - root - INFO - test has a shape of (10, 15)
-2025-04-15 19:57:32 - root - INFO - test_process_data : X_train shape (40, 56)`, y_train shape (40,)
-2025-04-15 19:57:32 - root - INFO - process data - Train: SUCCESS
-2025-04-15 19:57:32 - root - INFO - process data - Test: SUCCESS
-2025-04-15 19:57:32 - root - INFO - test_train_model : X_train shape (40, 56), y_train shape (40,)
-2025-04-15 19:57:33 - root - INFO - Training model : SUCCESS
-2025-04-15 19:57:33 - root - INFO - Test save data split: FAILURE with error Expected 1D or 2D array, got 0D array instead
-2025-04-15 19:57:33 - root - INFO - Saving Model: SUCCESS
-2025-04-15 19:57:33 - root - ERROR - Saving Model: FAILURE TEST success. Error : [Errno 13] Permission denied: 'testing/model.pkl'
-2025-04-15 19:57:33 - root - ERROR - Make inference : SUCCESS
-2025-04-15 19:57:33 - root - ERROR - Metrics compute : SUCCESS
-2025-04-15 19:57:33 - root - INFO - Teardown_class
-2025-04-15 19:57:34 - root - INFO - Pred <=50K and its type <class 'str'>
-2025-04-15 19:57:34 - root - INFO - Prediction: {'Salary prediction': '<=50K'}
-2025-04-15 19:57:35 - root - INFO - Pred <=50K and its type <class 'str'>
-2025-04-15 19:57:35 - root - INFO - Prediction: {'Salary prediction': '<=50K'}
+2025-04-18 19:59:31 - root - INFO - setup_class
+2025-04-18 19:59:31 - root - INFO - class created, 50 rows to read
+2025-04-18 19:59:31 - root - INFO - Testing import_data (50, 15): SUCCESS
+2025-04-18 19:59:32 - root - INFO - perform split data: SUCCESS
+2025-04-18 19:59:32 - root - INFO - train has a shape of (40, 15)
+2025-04-18 19:59:32 - root - INFO - test has a shape of (10, 15)
+2025-04-18 19:59:32 - root - INFO - test_process_data : X_train shape (40, 59)`, y_train shape (40,)
+2025-04-18 19:59:32 - root - INFO - process data - Train: SUCCESS
+2025-04-18 19:59:32 - root - INFO - process data - Test: SUCCESS
+2025-04-18 19:59:32 - root - INFO - test_train_model : X_train shape (40, 59), y_train shape (40,)
+2025-04-18 19:59:32 - root - INFO - Training model : SUCCESS
+2025-04-18 19:59:32 - root - INFO - Test save data split: FAILURE with error Expected 1D or 2D array, got 0D array instead
+2025-04-18 19:59:32 - root - INFO - Saving Model: SUCCESS
+2025-04-18 19:59:32 - root - ERROR - Saving Model: FAILURE TEST success. Error : [Errno 13] Permission denied: 'testing/model.pkl'
+2025-04-18 19:59:32 - root - ERROR - Make inference : SUCCESS
+2025-04-18 19:59:32 - root - ERROR - Metrics compute : SUCCESS
+2025-04-18 19:59:32 - root - INFO - Teardown_class
+2025-04-18 19:59:33 - root - INFO - Pred <=50K and its type <class 'str'>
+2025-04-18 19:59:33 - root - INFO - Prediction: {'Salary prediction': '<=50K'}
+2025-04-18 19:59:33 - root - INFO - Pred <=50K and its type <class 'str'>
+2025-04-18 19:59:33 - root - INFO - Prediction: {'Salary prediction': '<=50K'}

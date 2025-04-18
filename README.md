@@ -172,3 +172,6 @@ Use makefile to lint, format, update environment or run test
 # Code Coverage
 
 ![](./screenshots/test_coverage.png)
+
+# Test Result
+![](./screenshots/test_results.png)

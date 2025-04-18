@@ -9,7 +9,7 @@ update-env:
 	conda env update -f $(ENV_FILE) -n $(ENV_NAME)
 
 test:
-	pytest  census_class_test.py main_test.py
+	pytest  -vv census_class_test.py main_test.py
 	python -m pytest census_class_test.py main_test.py -vv --cov
 
 format:

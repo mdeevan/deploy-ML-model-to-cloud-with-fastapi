@@ -1,0 +1,46 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.0, pytest-8.3.5, pluggy-1.5.0 -- /home/ubuntu/miniconda3/envs/ml_deploy_fastapi/bin/python3.10
+cachedir: .pytest_cache
+rootdir: /home/ubuntu/deploy-ML-model-to-cloud-with-fastapi
+plugins: hydra-core-1.3.2, cov-6.1.1
+collecting ... collected 14 items
+
+census_class_test.py::TestCensus::test_import_data PASSED                [  7%]
+census_class_test.py::TestCensus::test_split_data PASSED                 [ 14%]
+census_class_test.py::TestCensus::test_process_data PASSED               [ 21%]
+census_class_test.py::TestCensus::test_train_models PASSED               [ 28%]
+census_class_test.py::TestCensus::test_save_data_split PASSED            [ 35%]
+census_class_test.py::TestCensus::test_save_model PASSED                 [ 42%]
+census_class_test.py::TestCensus::test_save_model_negative PASSED        [ 50%]
+census_class_test.py::TestCensus::test_make_inference PASSED             [ 57%]
+census_class_test.py::TestCensus::test_compute_metrics PASSED            [ 64%]
+census_class_test.py::TestCensus::test_execute_training PASSED           [ 71%]
+main_test.py::test_root PASSED                                           [ 78%]
+main_test.py::test_predict_positive PASSED                               [ 85%]
+main_test.py::test_predict_positive_over_50K PASSED                      [ 92%]
+main_test.py::test_predict_negative PASSED                               [100%]
+
+=============================== warnings summary ===============================
+main_test.py::test_root
+main_test.py::test_predict_positive
+main_test.py::test_predict_positive_over_50K
+main_test.py::test_predict_negative
+  /home/ubuntu/miniconda3/envs/ml_deploy_fastapi/lib/python3.10/site-packages/starlette/testclient.py:453: DeprecationWarning: There is no current event loop
+    loop = asyncio.get_event_loop()
+
+main_test.py::test_root
+main_test.py::test_predict_positive
+main_test.py::test_predict_positive_over_50K
+main_test.py::test_predict_negative
+  /home/ubuntu/miniconda3/envs/ml_deploy_fastapi/lib/python3.10/site-packages/starlette/testclient.py:234: DeprecationWarning: There is no current event loop
+    loop = asyncio.get_event_loop()
+
+main_test.py::test_root
+main_test.py::test_predict_positive
+main_test.py::test_predict_positive_over_50K
+main_test.py::test_predict_negative
+  /home/ubuntu/miniconda3/envs/ml_deploy_fastapi/lib/python3.10/site-packages/starlette/testclient.py:461: DeprecationWarning: There is no current event loop
+    loop = asyncio.get_event_loop()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 14 passed, 12 warnings in 3.95s ========================
