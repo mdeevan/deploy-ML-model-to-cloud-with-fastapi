@@ -3,21 +3,45 @@
 
 
 # About
-The project is to creating a MLOPS CI/CD pipeline and comprises of following  
+This is a Supervised Machine Learning project, classifying a salary of an invdividual based on the census data. The project utilizes full lifecycle of MLOPS including CI/CD pipeline.
+
 * DVC (Data Version Control):
    - To version control the data, and model revisions with the ability to rollback to previous versions
    - Metrics tracking as version for each of experiments
-   - Parametrize experiments, via a yaml file to avoid changing code in experimentation  
+   - Parametrize experiments, via a yaml file to avoid changing code in experimentation
+   - The data files, which are large, are stored in S3, whereas MD5 file signatures are tracked in GIT
      
 * Github actions: (continuous integration)
-   - As code is pushed into the github repository, code is formatted, linted and tested
+   - As code is pushed into the github repository, code is formatted (black), linted (pylint) and tested (pytest)
+   - on successful completion of the build job that include code testing, deploy job deploys to render via github actions
     
 * Render: (continous deployment)
-   - the checked-in code is deployed automatically 
+   - the checked-in code is deployed automatically, once build, lint and tests are passed
 
 * StreamLit: (Front end)
-   - Code is deployed on Stramlit for inteacting with the mode, in obtaining the prediction
+   - Code is deployed on Streamlit for inteacting with the model and obtaining predictions.
 
+# Interacting/Training the application 
+   ### Fastapi
+   - FastAPI: https://deploy-ml-model-to-cloud-with-fastapi.onrender.com 
+      * the link will be down due to inactivity and takes some time to be reactivated (because of free version),
+      * to run locally use uvicorn main:app
+      * use following to check if service is active  
+         curl -X 'GET'   'https://deploy-ml-model-to-cloud-with-fastapi.onrender.com/'   -H 'accept: application/json'
+
+   ### Streamlit
+   - Streamlit application : https://deploy-ml-model-to-cloud-with-fastapi-ewhwkycktnpksn4brtqume.streamlit.app/
+      * a free version may result in app being dormant, so will need to be refreshed.
+      * to run in locally use streamlit run census_app.py
+
+   ### Running experiments
+   - DVC pipeline
+      * use the following to run the experiment, modify the n_estimators as needed
+         dvc exp run --set-param n_estimators=145
+      * all customizaable parameters are defined in params.yml, to avoid need to make changes in code
+      * dvc.yml
+         - Metrics and outfiles defined in dvc.yaml (pipeline)
+         - metrics and outfiles are tracked by dvc and stored in S3 in  this case
 
 # Environment Set up
 ### Setup development environment
@@ -50,7 +74,7 @@ one can use a cloud ubuntu 2022 machine with about 30 GB or RAM and some medium 
 
       ```
 
-- for DMV, S3 was used as storage medium
+- for DVC, S3 was used as storage medium
 
    Follow the details [here to setup aws credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) 
 ```
@@ -84,23 +108,4 @@ To use your new S3 bucket from the AWS CLI you will need to create an IAM user w
 * Configure your AWS CLI to use the Access key ID and Secret Access key.
 
 
-## API Creation
-
-* Create a RESTful API using FastAPI this must implement:
-   * GET on the root giving a welcome message.
-   * POST that does model inference.
-   * Type hinting must be used.
-   * Use a Pydantic model to ingest the body from POST. This model should contain an example.
-    * Hint: the data has names with hyphens and Python does not allow those as variable names. Do not modify the column names in the csv and instead use the functionality of FastAPI/Pydantic/etc to deal with this.
-* Write 3 unit tests to test the API (one for the GET and two for POST, one that tests each prediction).
-
-## API Deployment
-
-* Create a free Heroku account (for the next steps you can either use the web GUI or download the Heroku CLI).
-* Create a new app and have it deployed from your GitHub repository.
-   * Enable automatic deployments that only deploy if your continuous integration passes.
-   * Hint: think about how paths will differ in your local environment vs. on Heroku.
-   * Hint: development in Python is fast! But how fast you can iterate slows down if you rely on your CI/CD to fail before fixing an issue. I like to run flake8 locally before I commit changes.
-* Set up DVC on Heroku using the instructions contained in the starter directory.
-* Set up access to AWS on Heroku, if using the CLI: `heroku config:set AWS_ACCESS_KEY_ID=xxx AWS_SECRET_ACCESS_KEY=yyy`
-* Write a script that uses the requests module to do one POST on your live API.
+# Folder structure
