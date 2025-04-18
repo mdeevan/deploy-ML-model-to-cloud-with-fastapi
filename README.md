@@ -107,54 +107,58 @@ To use your new S3 bucket from the AWS CLI you will need to create an IAM user w
 * After reviewing your choices, click create user. 
 * Configure your AWS CLI to use the Access key ID and Secret Access key.
 
+### Make file
+Use makefile to lint, format, update environment or run test
+  
+
+
 
 # Folder structure
 
-.  
-├── EDA_cleanup.ipynb  
-├── Makefile  
-├── README.md  
-├── census_app.py  
-├── census_class.py  
-├── census_class_test.py  
-├── compute_slices.py  
-├── data  
-│   ├── X_test.csv  
-│   ├── X_train.csv  
-│   ├── census.csv  
-│   ├── census_clean.csv  
-│   ├── metrics.json  
-│   ├── slice_output.txt  
-│   ├── slicer.csv  
-│   ├── test.csv  
-│   ├── train.csv  
-│   ├── y_test.csv  
-│   └── y_train.csv  
-├── dvc.lock  
-├── dvc.yaml  
-├── environment.yml   
-├── experiments.txt  
-├── htmlcov  (collapsed)  
-├── logs  
-│   └── census.log  
-├── main.py  
-├── main_test.py  
-├── ml  
-│   ├── __init__.py  
-│   ├── data.py  
-│   └── model.py  
-├── model   
-│   ├── encoder.pkl  
-│   ├── lb.pkl  
-│   └── model.pkl  
-├── model_card_template.md  
-├── params.yaml  
-├── requirements.txt  
-├── sanitycheck.py  
-├── screenshots (collapsed)  
-├── setup.py  
-├── train  
-│   ├── __init__.py  
-│   └── train_model.py    
-└── train_model.py  
+| path/file | description|
+| ---- | --- |
+.  | root
+├── EDA_cleanup.ipynb     |  EDA to clean census.csv and save as census_clean.csv    
+├── Makefile              | 
+├── README.md  | This file
+├── census_app.py  | streamlit application
+├── census_class.py  | training code as a python class
+├── census_class_test.py  | pytests for census_class
+├── compute_slices.py  | compute metrics for categorical features
+├── data  |
+│   ├── X_test.csv  | Encoded test set features (DVC tracked)
+│   ├── X_train.csv  | Encoded train set feature (DVC tracked)
+│   ├── census.csv  | original downloaded data
+│   ├── census_clean.csv  | cleaned version after EDA of census data
+│   ├── metrics.json  | metrics produced from experiments  (DVC tracked)
+│   ├── slice_output.txt  | metrics output from compute_slices.py
+│   ├── slicer.csv  |
+│   ├── test.csv  | Features test split of the census_clean.csv (DVC tracked).
+│   ├── train.csv  | Features train split of the census_clean.csv (DVC tracked) 
+│   ├── y_test.csv  | Binarized test set Target set faetures  (DVC tracked)
+│   └── y_train.csv  | Binarized train set Target set faetures  (DVC tracked)
+├── dvc.lock  | 
+├── dvc.yaml  | dvc pipeline
+├── environment.yml   | enviroment setup with conda
+├── experiments.txt  | environment setup with python
+├── htmlcov  (collapsed)  | coverage output folder
+├── logs  | 
+│   └── census.log  | log created from experiments
+├── main.py  | FAST API 
+├── main_test.py  | test main.py
+├── ml  |
+│   ├── __ init__.py  |
+│   ├── data.py  | features coding and target binarization
+│   └── model.py  | train, compute metrics and inference, referencd from census_class
+├── model   |
+│   ├── encoder.pkl  | featured encoder -  (DVC tracked)
+│   ├── lb.pkl  | label binarizer -  (DVC tracked)
+│   └── model.pkl  | trained model -  (DVC tracked)
+├── model_card_template.md | description of the model
+├── params.yaml  | customizatable parameters
+├── requirements.txt  | environment setup with python
+├── sanitycheck.py  |
+├── screenshots (collapsed)|  
+├── setup.py  |
+└── train_model.py  | train the model
 
