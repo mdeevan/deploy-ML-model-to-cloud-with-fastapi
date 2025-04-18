@@ -1,0 +1,4 @@
+requirements.txt found in /home/ubuntu/deploy-ML-model-to-cloud-with-fastapi instead of Pipfile! Converting...
+✔ Success!
+Warning: Your Pipfile now contains pinned versions, if your requirements.txt did. 
+We recommend updating your Pipfile to specify the "*" version, instead.
