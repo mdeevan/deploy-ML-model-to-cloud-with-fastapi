@@ -174,3 +174,5 @@ cython_debug/
 /data_raw.csv
 temp.ipynb
 /metrics.json
+history.txt
+temp.txt

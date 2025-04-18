@@ -1,18 +1,72 @@
-Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
+
+[![Python application](https://github.com/mdeevan/deploy-ML-model-to-cloud-with-fastapi/actions/workflows/python-app.yml/badge.svg)](https://github.com/mdeevan/deploy-ML-model-to-cloud-with-fastapi/actions/workflows/python-app.yml)
+
+
+# About
+The project is to creating a MLOPS CI/CD pipeline and comprises of following  
+* DVC (Data Version Control):
+   - To version control the data, and model revisions with the ability to rollback to previous versions
+   - Metrics tracking as version for each of experiments
+   - Parametrize experiments, via a yaml file to avoid changing code in experimentation  
+     
+* Github actions: (continuous integration)
+   - As code is pushed into the github repository, code is formatted, linted and tested
+    
+* Render: (continous deployment)
+   - the checked-in code is deployed automatically 
+
+* StreamLit: (Front end)
+   - Code is deployed on Stramlit for inteacting with the mode, in obtaining the prediction
+
 
 # Environment Set up
-* Download and install conda if you don’t have it already.
-    * Use the supplied requirements file to create a new environment, or
-    * conda create -n [envname] "python=3.8" scikit-learn dvc pandas numpy pytest jupyter jupyterlab fastapi uvicorn -c conda-forge
-    * Install git either through conda (“conda install git”) or through your CLI, e.g. sudo apt-get git.
+### Setup development environment
 
-## Repositories
+setup environment in one of the following few ways
+one can use a cloud ubuntu 2022 machine with about 30 GB or RAM and some medium compute. For this particular project I made use of t3.medium EC2 instance with 30 GB of RAM.
 
-* Create a directory for the project and initialize Git and DVC.
-   * As you work on the code, continually commit changes. Trained models you want to keep must be committed to DVC.
-* Connect your local Git repository to GitHub.
+- Setup development environment
+   - Using conda  
+      follow instructions here to [install miniconda or anaconda](https://www.anaconda.com/docs/getting-started/miniconda/install#linux-terminal-installer)   
 
-## Set up S3
+      here is how to install miniconda
+      ```
+      # download miniconda
+      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+      # install miniconda
+      bash ~/Miniconda3-latest-Linux-x86_64.sh
+      
+      once the installaton is successful. create enviornment. it uses environment.yml file
+      make update-env
+      ```
+
+   - using python virual env
+      ```
+      python -m venv venv
+
+      # setup environment with requirement.txt file
+      pip install -r requirements.txt
+
+      ```
+
+- for DMV, S3 was used as storage medium
+
+   Follow the details [here to setup aws credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) 
+```
+   use aws configure to setup the access and secret keys. Access and secret keys are first to be created and obtained from AWS either through console or via API.
+   here are the details on configuring credentials locally
+
+   $ aws configure
+   (sample data)
+   AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
+   AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+   Default region name [None]: us-west-2
+   Default output format [None]: json
+
+```
+
+### Set up S3
 
 * In your CLI environment install the<a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html" target="_blank"> AWS CLI tool</a>.
 * In the navigation bar in the Udacity classroom select **Open AWS Gateway** and then click **Open AWS Console**. You will not need the AWS Access Key ID or Secret Access Key provided here.
@@ -29,29 +83,6 @@ To use your new S3 bucket from the AWS CLI you will need to create an IAM user w
 * After reviewing your choices, click create user. 
 * Configure your AWS CLI to use the Access key ID and Secret Access key.
 
-## GitHub Actions
-
-* Setup GitHub Actions on your repository. You can use one of the pre-made GitHub Actions if at a minimum it runs pytest and flake8 on push and requires both to pass without error.
-   * Make sure you set up the GitHub Action to have the same version of Python as you used in development.
-* Add your <a href="https://github.com/marketplace/actions/configure-aws-credentials-action-for-github-actions" target="_blank">AWS credentials to the Action</a>.
-* Set up <a href="https://github.com/iterative/setup-dvc" target="_blank">DVC in the action</a> and specify a command to `dvc pull`.
-
-## Data
-
-* Download census.csv from the data folder in the starter repository.
-   * Information on the dataset can be found <a href="https://archive.ics.uci.edu/ml/datasets/census+income" target="_blank">here</a>.
-* Create a remote DVC remote pointing to your S3 bucket and commit the data.
-* This data is messy, try to open it in pandas and see what you get.
-* To clean it, use your favorite text editor to remove all spaces.
-* Commit this modified data to DVC under a new name (we often want to keep the raw data untouched but then can keep updating the cooked version).
-
-## Model
-
-* Using the starter code, write a machine learning model that trains on the clean data and saves the model. Complete any function that has been started.
-* Write unit tests for at least 3 functions in the model code.
-* Write a function that outputs the performance of the model on slices of the data.
-   * Suggestion: for simplicity, the function can just output the performance on slices of just the categorical features.
-* Write a model card using the provided template.
 
 ## API Creation
 

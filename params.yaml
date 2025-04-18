@@ -1,4 +1,4 @@
-n_estimators: 133
+n_estimators: 145
 data:
   path: data/
   raw_file: census.csv
@@ -20,5 +20,4 @@ cat_features:
 - race
 - sex
 - native-country
-fastapi_base_url: 
-- http://localhost:8000 
+fastapi_base_url: https://deploy-ml-model-to-cloud-with-fastapi.onrender.com/ #http://localhost:8000

@@ -10,6 +10,7 @@ update-env:
 
 test:
 	pytest  census_class_test.py main_test.py
+	python -m pytest census_class_test.py main_test.py -vv --cov
 
 format:
 	black  --line-length 88 *.py

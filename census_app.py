@@ -39,7 +39,11 @@ class CensusData(BaseModel):
 
 
 # API configuration
-FASTAPI_BASE_URL = "http://localhost:8000"
+FASTAPI_BASE_URL = "https://deploy-ml-model-to-cloud-with-fastapi.onrender.com/"  #"http://localhost:8000"
+
+# URL Is configured in params.yml
+
+
 PREDICT_ENDPOINT = f"{FASTAPI_BASE_URL}/predict"
 DATA_ENDPOINT = f"{FASTAPI_BASE_URL}/data"
 
@@ -169,6 +173,8 @@ def main():
 
         st.session_state.values_list = values_list
         st.session_state.fastapi_predict_url = f"{fastapi_base_url}/predict"
+
+        print(f"url: {fastapi_base_url}, sessoin_url {st.session_state.fastapi_predict_url}")
 
         df = None
 

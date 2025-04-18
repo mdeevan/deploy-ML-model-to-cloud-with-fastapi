@@ -6,37 +6,37 @@ stages:
     deps:
     - path: train_model.py
       hash: md5
-      md5: a307e141bb4e23b9a4f2fe751562762f
-      size: 3101
+      md5: f8b6e9015832f616c23fe12541c01753
+      size: 158
     params:
       params.yaml:
         data.clean_file: census_clean.csv
         model.metric_file: metrics.json
-        n_estimators: 133
+        n_estimators: 145
     outs:
     - path: data/X_test.csv
       hash: md5
-      md5: d11ddc86519cb2403e5951ec074c86ee
+      md5: 55970352d2066051fceb8ac7fe915217
       size: 15685800
     - path: data/X_train.csv
       hash: md5
-      md5: 3ba7d314f6e45673458dfeb738f8d2f6
+      md5: c1eda39a492e7649b4d209b0fa795e08
       size: 62735400
     - path: data/metrics.json
       hash: md5
-      md5: 0cf48978496cb2d75c6cd36bce8e6ac4
+      md5: 2c4b64352c6b67854714431f840b4c24
       size: 92
     - path: data/test.csv
       hash: md5
-      md5: 013a0e83ebdbf7cfbb4719209daa5e83
-      size: 660098
+      md5: a094f720d17fd988b1db3fccd5b28051
+      size: 659509
     - path: data/y_test.csv
       hash: md5
-      md5: 5e578b0d95ccbf078657a777d3ded26e
+      md5: aa8ded095b40c8d5a44a437312af0f46
       size: 150825
     - path: data/y_train.csv
       hash: md5
-      md5: f47dbdc3ee42832846c1e39f61df2a2e
+      md5: 0c68929546a850d8360f7c25cfb74491
       size: 603225
     - path: model/encoder.pkl
       hash: md5
@@ -48,20 +48,20 @@ stages:
       size: 447
     - path: model/model.pkl
       hash: md5
-      md5: 8d8adf8ab7fa6473890af903b049443b
-      size: 92095817
+      md5: 59e0ba01f34e2dac78cdab3faf33ea6b
+      size: 100549545
   slices_inference:
     cmd:
     - python compute_slices.py
     deps:
     - path: compute_slices.py
       hash: md5
-      md5: aed184f3fd282b2596bf9fed25424f96
-      size: 2502
+      md5: 46a2c9c418889c4952ecde97ed8627d7
+      size: 2758
     - path: data/test.csv
       hash: md5
-      md5: 013a0e83ebdbf7cfbb4719209daa5e83
-      size: 660098
+      md5: a094f720d17fd988b1db3fccd5b28051
+      size: 659509
     - path: model/encoder.pkl
       hash: md5
       md5: cab221293ee88309b87f3346b3f2fb79
@@ -72,13 +72,13 @@ stages:
       size: 447
     - path: model/model.pkl
       hash: md5
-      md5: 8d8adf8ab7fa6473890af903b049443b
-      size: 92095817
+      md5: 59e0ba01f34e2dac78cdab3faf33ea6b
+      size: 100549545
     params:
       params.yaml:
         data.clean_file: census_clean.csv
     outs:
     - path: data/slice_output.txt
       hash: md5
-      md5: 3402e6d31423ec9777d374633f78d08c
-      size: 5889
+      md5: eb24ea67b5449e8b05e4e071cb49d49a
+      size: 5626

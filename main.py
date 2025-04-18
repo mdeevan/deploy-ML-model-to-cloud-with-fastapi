@@ -130,7 +130,7 @@ async def predict(input_params: CensusData) -> str:
     # print (f"model type \n{type(model)}")
 
     input_df = pd.DataFrame(input_data, index=[0])
-    # print(f"input df \n {input_df}")
+    print(f"input df \n {input_df}")
     # logger.info(f"Input data: {input_df}")
 
     census_obj = cls.Census()
