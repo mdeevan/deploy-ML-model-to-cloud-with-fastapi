@@ -1,0 +1,94 @@
+.
+├── EDA_cleanup.ipynb
+├── Makefile
+├── README.md
+├── __pycache__
+│   ├── census_app.cpython-310.pyc
+│   ├── census_class.cpython-310-pytest-8.3.5.pyc
+│   ├── census_class.cpython-310.pyc
+│   ├── census_class_test.cpython-310-pytest-8.3.5.pyc
+│   ├── compute_slices.cpython-310-pytest-8.3.5.pyc
+│   ├── main.cpython-310-pytest-8.3.5.pyc
+│   ├── main.cpython-310.pyc
+│   ├── main_test.cpython-310-pytest-8.3.5.pyc
+│   ├── sanitycheck.cpython-310-pytest-8.3.5.pyc
+│   ├── setup.cpython-310-pytest-8.3.5.pyc
+│   ├── test_census_app.cpython-310-pytest-8.3.5.pyc
+│   ├── test_fastapi.cpython-310-pytest-8.3.5.pyc
+│   └── test_model.cpython-310-pytest-8.3.5.pyc
+├── census_app.py
+├── census_class.py
+├── census_class_test.py
+├── compute_slices.py
+├── data
+│   ├── X_test.csv
+│   ├── X_train.csv
+│   ├── census.csv
+│   ├── census_clean.csv
+│   ├── metrics.json
+│   ├── slice_output.txt
+│   ├── slicer.csv
+│   ├── test.csv
+│   ├── train.csv
+│   ├── y_test.csv
+│   └── y_train.csv
+├── dvc.lock
+├── dvc.yaml
+├── dvc_on_heroku_instructions.md
+├── environment.yml
+├── experiments.txt
+├── htmlcov
+│   ├── census_class_py.html
+│   ├── census_class_test_py.html
+│   ├── class_index.html
+│   ├── coverage_html_cb_6fb7b396.js
+│   ├── favicon_32_cb_58284776.png
+│   ├── function_index.html
+│   ├── index.html
+│   ├── keybd_closed_cb_ce680311.png
+│   ├── main_py.html
+│   ├── main_test_py.html
+│   ├── status.json
+│   ├── style_cb_8e611ae1.css
+│   ├── z_8a398cd7c5d1827d___init___py.html
+│   ├── z_8a398cd7c5d1827d_data_py.html
+│   └── z_8a398cd7c5d1827d_model_py.html
+├── logs
+│   └── census.log
+├── main.py
+├── main_test.py
+├── ml
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-310.pyc
+│   │   ├── data.cpython-310.pyc
+│   │   └── model.cpython-310.pyc
+│   ├── data.py
+│   └── model.py
+├── model
+│   ├── encoder.pkl
+│   ├── lb.pkl
+│   └── model.pkl
+├── model_card_template.md
+├── old
+│   └── xxxtest_census_app.py
+├── params.yaml
+├── reqs
+├── requirements.txt
+├── sanitycheck.py
+├── screenshots
+│   ├── exp2
+│   ├── exp2.txt
+│   └── exps
+├── setup.py
+├── temp.ipynb
+├── temp.txt
+├── train
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   └── train_model.cpython-310.pyc
+│   └── train_model.py
+├── train_model.py
+└── tree.txt
+
+11 directories, 80 files

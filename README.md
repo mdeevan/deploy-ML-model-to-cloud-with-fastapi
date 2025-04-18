@@ -109,3 +109,52 @@ To use your new S3 bucket from the AWS CLI you will need to create an IAM user w
 
 
 # Folder structure
+
+.  
+├── EDA_cleanup.ipynb  
+├── Makefile  
+├── README.md  
+├── census_app.py  
+├── census_class.py  
+├── census_class_test.py  
+├── compute_slices.py  
+├── data  
+│   ├── X_test.csv  
+│   ├── X_train.csv  
+│   ├── census.csv  
+│   ├── census_clean.csv  
+│   ├── metrics.json  
+│   ├── slice_output.txt  
+│   ├── slicer.csv  
+│   ├── test.csv  
+│   ├── train.csv  
+│   ├── y_test.csv  
+│   └── y_train.csv  
+├── dvc.lock  
+├── dvc.yaml  
+├── environment.yml   
+├── experiments.txt  
+├── htmlcov  (collapsed)  
+├── logs  
+│   └── census.log  
+├── main.py  
+├── main_test.py  
+├── ml  
+│   ├── __init__.py  
+│   ├── data.py  
+│   └── model.py  
+├── model   
+│   ├── encoder.pkl  
+│   ├── lb.pkl  
+│   └── model.pkl  
+├── model_card_template.md  
+├── params.yaml  
+├── requirements.txt  
+├── sanitycheck.py  
+├── screenshots (collapsed)  
+├── setup.py  
+├── train  
+│   ├── __init__.py  
+│   └── train_model.py    
+└── train_model.py  
+
