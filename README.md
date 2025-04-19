@@ -132,7 +132,7 @@ Use makefile to lint, format, update environment or run test
 │   ├── census.csv  | original downloaded data
 │   ├── census_clean.csv  | cleaned version after EDA of census data
 │   ├── metrics.json  | metrics produced from experiments  (DVC tracked)
-│   ├── slice_output.txt  | metrics output from compute_slices.py
+│   ├── slice_output.txt  | metrics output from compute_slices.py  (DVC tracked)
 │   ├── slicer.csv  |
 │   ├── test.csv  | Features test split of the census_clean.csv (DVC tracked).
 │   ├── train.csv  | Features train split of the census_clean.csv (DVC tracked) 
