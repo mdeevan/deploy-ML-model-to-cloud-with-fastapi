@@ -30,9 +30,10 @@ This is a Supervised Machine Learning project, classifying a salary of an invdiv
          curl -X 'GET'   'https://deploy-ml-model-to-cloud-with-fastapi.onrender.com/'   -H 'accept: application/json'
 
    ### Streamlit
-   - Streamlit application : https://deploy-ml-model-to-cloud-with-fastapi-ewhwkycktnpksn4brtqume.streamlit.app/
+   - Streamlit application : https://deploy-ml-model-to-cloud-with-fastapi-cjessxghgs3ca3rspssdxx.streamlit.app/
       * a free version may result in app being dormant, so will need to be refreshed.
       * to run in locally use streamlit run census_app.py
+
 
    ### Running experiments
    - DVC pipeline
@@ -139,7 +140,7 @@ Use makefile to lint, format, update environment or run test
 │   └── y_train.csv  | Binarized train set Target set faetures  (DVC tracked)
 ├── dvc.lock  | 
 ├── dvc.yaml  | dvc pipeline
-├── environment.yml   | enviroment setup with conda
+├── environment_conda.yml   | enviroment setup with conda
 ├── experiments.txt  | environment setup with python
 ├── htmlcov  (collapsed)  | coverage output folder
 ├── logs  | 
@@ -170,8 +171,39 @@ Use makefile to lint, format, update environment or run test
 
 
 # Code Coverage
-
-![](./screenshots/test_coverage.png)
+![pytest code coverage](./screenshots/test_coverage.png)
 
 # Test Result
-![](./screenshots/test_results.png)
+![pytest reslts](./screenshots/test_results.png)
+
+# Sliced Output
+[Link to the sliced_output.txt file - click to view](./data/slice_output.txt)
+
+# Model Card
+[link to the model_card.md file - click to view](./model_card.md)
+
+
+# Screenshots
+
+## CI/CD
+### Continuous Integrations (CI)
+![Continuous Integration - github Actions](./screenshots/continuous_integration.png)
+![Continuous Integration - github Actions](./screenshots/continuous_integration_2.png)
+
+### Continuous Delivery (CD)
+![continuous delivery - Render](./screenshots/continuous_deployment.png)
+![continuous delivery - Render](./screenshots/continuous_deployment_2_render.png)
+
+# FASTAPI
+![FASTAPI swagger/docs](./screenshots/example.png)
+
+
+# Live Get
+![curl - get FASTAPI get response](./screenshots/live_get.png)
+
+# Live POST
+![curl - get FASTAPI post response](./screenshots/live_post.png)
+
+
+# StreamLit
+![streamlit- post for prediction](./screenshots/streamlit.png)
